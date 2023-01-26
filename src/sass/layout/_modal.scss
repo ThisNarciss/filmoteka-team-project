@@ -66,3 +66,64 @@
     fill: var(--accent-color);
   }
 }
+
+.modal-card-box {
+  overflow: hidden;
+  width: 240px;
+  height: 357px;
+  border-radius: 4px;
+
+  @media screen and (max-width: 767px) {
+    margin-bottom: 20px;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 264px;
+    height: 374px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    width: 375px;
+    height: 478px;
+  }
+}
+
+.modal-film-content {
+  @media screen and (min-width: 768px) {
+    width: 264px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    width: 390px;
+  }
+}
+
+.modal-select-btn {
+  display: flex;
+  gap: 20px;
+
+  @media screen and (min-width: 768px) {
+    gap: 15px;
+  }
+}
+
+.watched-btn,
+.queue-btn {
+  padding: 6px 27px;
+  width: 110px;
+
+  @media screen and (min-width: 768px) {
+    padding-top: 14px;
+    padding-right: 9px;
+    padding-left: 9px;
+    padding-bottom: 12px;
+    width: 125px;
+  }
+  @media screen and (min-width: 1200px) {
+    padding-top: 14px;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 12px;
+    width: 136px;
+  }
+}

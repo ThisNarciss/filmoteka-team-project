@@ -1,7 +1,13 @@
 import axios from 'axios';
-// import { createGalleryMarkup } from './cerateGalleryMarkUp';
-// import { fetchMovies } from './fetch-movies';
-const gallery = document.querySelector('.js-container');
+import createMarkUp from './create-mark-up';
+import { movieTrending } from './fetch-movies';
+import {
+  noMatchesNotification,
+  emptyQueryNotification,
+  errorNotification,
+} from './notifications';
+
+const trendingGallery = document.querySelector('.js-movie-card');
 
 const searchInput = document.querySelector('.js-search-input');
 const searchForm = document.querySelector('.js-search-form');
@@ -13,24 +19,15 @@ export function onSearchSubmit(evt) {
   const searchQuery = searchInput.value.trim();
 
   if (searchQuery == '') {
-    alert('fill the search query');
+    emptyQueryNotification();
+    returnToMain();
   } else {
     goSearch(searchQuery).then(function (response) {
-      if (response.data.results.length === 0) {
-        alert(
-          'Sorry, there are no films matching your search query. Please try again.'
-        );
-        fetchMovies().then(function (response) {
-          if (response.length === 0) {
-            console.log(
-              '"Sorry, there are no films matching your search query. Please try again."'
-            );
-          } else {
-            createGalleryMarkup(response);
-          }
-        });
+      if (response.length === 0) {
+        noMatchesNotification();
+        returnToMain();
       } else {
-        createGalleryMarkup(response);
+        createMarkUp(response);
       }
     });
   }
@@ -42,12 +39,23 @@ async function goSearch(query) {
     const response = await axios.get(
       `https://api.themoviedb.org/3/search/movie?api_key=d60997a7e23cda835c1c23368c69f903&query=${query}`
     );
-    return response;
+    const arr = response.data.results;
+    return arr;
   } catch (error) {
     console.error(error);
   }
 }
 
 export function clearMarkup() {
-  gallery.innerHTML = '';
+  trendingGallery.innerHTML = '';
+}
+
+function returnToMain() {
+  movieTrending().then(function (response) {
+    if (response.length === 0) {
+      noMatchesNotification();
+    } else {
+      createMarkUp(response);
+    }
+  });
 }

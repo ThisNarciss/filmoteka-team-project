@@ -29,6 +29,11 @@ async function onClick (evt){
             watchedBtn.addEventListener('click', handleAddToWatched);
             queueBtn.addEventListener('click', handleAddToQueue);
         }
+        if(modal.classList.contains('is-hidden')){
+            watchedBtn.removeEventListener('click', handleAddToWatched);
+            queueBtn.removeEventListener('click', handleAddToQueue);
+        }
+
     }catch(err){
         console.log(err)
     }

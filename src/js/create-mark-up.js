@@ -14,6 +14,8 @@ export default function createMarkUp(arr) {
 
       const newArrGen = gen.map(obj => obj.name);
 
+      console.log('newArrGen', newArrGen.slice(0, 2).join(', ') + ', Other');
+
       return `<li id="${result.id}" class="movie-card__list">
                 <article>
                   <img class="movie-card__poster" src="https://www.themoviedb.org/t/p/w500${
@@ -23,9 +25,9 @@ export default function createMarkUp(arr) {
         result.title
       }</h2>
                     <div class="js-genres">
-                       <p class="movie-card__geners">${newArrGen} | ${
-        result.release_date.split('-')[0]
-      }</p>
+                       <p class="movie-card__geners">${
+                         newArrGen.slice(0, 2).join(', ') + ', Other'
+                       } | ${result.release_date.split('-')[0]}</p>
                     
                     </div>
               </article>

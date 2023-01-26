@@ -30,7 +30,7 @@
 
 .footer-text {
   font-size: 14px;
-  line-height: 0.88;
+  line-height: 1.14;
   text-align: center;
 
   display: flex;
@@ -40,13 +40,13 @@
   text-align: center;
   @media screen and (min-width: 768px) {
     font-size: 16px;
-    line-height: 0.84;
+    line-height: 1.19;
   }
 }
 .footer-link {
   position: relative;
   font-size: 14px;
-  line-height: 0.88;
+  line-height: 1.14;
   text-align: center;
 
   display: flex;
@@ -58,7 +58,7 @@
 
   @media screen and (min-width: 768px) {
     font-size: 16px;
-    line-height: 0.84;
+    line-height: 1.19;
   }
 
   &::after {

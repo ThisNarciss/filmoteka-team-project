@@ -1,7 +1,8 @@
 const trendingGallery = document.querySelector('.js-movie-card');
 
 export default function createMarkUp(arr) {
-  const arrData = arr;
+  trendingGallery.innerHTML = '';
+  const arrData = arr.results;
   const arrGen = JSON.parse(localStorage.getItem('genres')).genres;
   console.log(arrData);
   const murkUp = arrData

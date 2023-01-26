@@ -1,5 +1,6 @@
 import axios from 'axios';
 import createMarkUp from './create-mark-up';
+import pagination from './pagination';
 axios.defaults.baseURL = 'https://api.themoviedb.org/3';
 
 const API_KEY = '687f60735406ee0172c31461de2476ff';
@@ -12,11 +13,13 @@ axios
   .then(genres => localStorage.setItem('genres', JSON.stringify(genres.data)))
   .catch(error => console.error(error));
 
-export async function movieTrending() {
+export async function movieTrending(page = 1) {
   try {
-    const response = await axios.get(`${TREND_URL}?api_key=${API_KEY}`);
+    const response = await axios.get(
+      `${TREND_URL}?api_key=${API_KEY}&page=${page}`
+    );
 
-    const arr = response.data.results;
+    const arr = response.data;
 
     return arr;
   } catch (error) {
@@ -24,4 +27,10 @@ export async function movieTrending() {
   }
 }
 
-movieTrending().then(createMarkUp).catch(console.error());
+movieTrending()
+  .then(data => {
+    createMarkUp(data);
+    console.log(data);
+    pagination(1, data.total_pages);
+  })
+  .catch(console.error());

@@ -1,0 +1,36 @@
+.movie-card {
+  display: flex;
+  flex-wrap: wrap;
+  // justify-content: center;
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  /* or 120% */
+
+  & :nth-child(3n + 3) {
+    margin-right: 0px;
+  }
+
+  &__list {
+    max-width: 395px;
+    margin-right: 15px;
+    margin-bottom: 32px;
+  }
+
+  &__poster {
+    margin-bottom: 12px;
+  }
+
+  &__title {
+    margin-bottom: 7px;
+    text-transform: uppercase;
+    color: #000000;
+  }
+
+  &__geners {
+    color: #ff6b08;
+  }
+}

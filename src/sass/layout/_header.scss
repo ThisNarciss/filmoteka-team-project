@@ -170,14 +170,14 @@
   bottom: 4px;
   border: none;
   outline: none;
-
   background-color: transparent;
   fill: inherit;
+}
+.input__icon {
   stroke: var(--default-bgc);
-
   transition: stroke 250ms cubic-bezier(0.39, 0.575, 0.565, 1);
   &:hover,
   &:focus {
-    stroke: var(--second-text-color);
+    stroke: #ff001b;
   }
 }

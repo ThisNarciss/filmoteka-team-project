@@ -1,6 +1,6 @@
 <header class="header">
   <div class="container">
-    <div class="header__wrapper ">
+    <div class="header__wrapper">
       <a class="header__logo" href="./index.html">
         <svg class="header__logo-icon" width="24" height="24">
           <use href="./images/sprite.svg#icon-film"></use>
@@ -10,7 +10,9 @@
       <nav class="navigation">
         <ul class="navigation__list">
           <li class="navigation__link">
-            <a href="./index.html" class="navigation__link-home_current">Home</a>
+            <a href="./index.html" class="navigation__link-home_current"
+              >Home</a
+            >
           </li>
           <li class="navigation__link">
             <a href="./library.html">My library</a>
@@ -19,9 +21,13 @@
       </nav>
     </div>
 
-    <form id="search-form" class="input__form">
-      <input class="input__search" type="text" placeholder="Movie search" />
-      <button type="submit" class="input__btn ">
+    <form id="search-form" class="input__form js-search-form">
+      <input
+        class="input__search js-search-input"
+        type="text"
+        placeholder="Movie search"
+      />
+      <button type="submit" class="input__btn">
         <svg class="input__icon" width="12" height="12">
           <use href="./images/sprite.svg#icon-search"></use>
         </svg>

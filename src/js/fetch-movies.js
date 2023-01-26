@@ -1,0 +1,27 @@
+import axios from 'axios';
+import createMarkUp from './create-mark-up';
+axios.defaults.baseURL = 'https://api.themoviedb.org/3';
+
+const API_KEY = '687f60735406ee0172c31461de2476ff';
+
+const TREND_URL = `/trending/movie/week`;
+const GENRES_URL = `/genre/movie/list`;
+
+axios
+  .get(`${GENRES_URL}?api_key=${API_KEY}&language=en-US`)
+  .then(genres => localStorage.setItem('genres', JSON.stringify(genres.data)))
+  .catch(error => console.error(error));
+
+export async function movieTrending() {
+  try {
+    const response = await axios.get(`${TREND_URL}?api_key=${API_KEY}`);
+
+    const arr = response.data.results;
+
+    return arr;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+movieTrending().then(createMarkUp).catch(console.error());

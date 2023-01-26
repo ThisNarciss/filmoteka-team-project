@@ -3,7 +3,7 @@ const trendingGallery = document.querySelector('.js-movie-card');
 export default function createMarkUp(arr) {
   const arrData = arr;
   const arrGen = JSON.parse(localStorage.getItem('genres')).genres;
-
+  console.log(arrData);
   const murkUp = arrData
     .map(result => {
       const gen = result.genre_ids.map(num => {
@@ -13,7 +13,7 @@ export default function createMarkUp(arr) {
 
       const newArrGen = gen.map(obj => obj.name);
 
-      return `<li class="movie-card__list">
+      return `<li id="${result.id}" class="movie-card__list">
                 <article>
                   <img class="movie-card__poster" src="https://www.themoviedb.org/t/p/w500${
                     result.poster_path

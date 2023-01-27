@@ -1,4 +1,11 @@
 import axios from 'axios';
+import { handleAddToWatched } from './add-to-library';
+import {
+  handleAddToWatched,
+  handleAddToQueue,
+  isWatched,
+  isQueue,
+} from './add-to-library';
 
 
 const closeBtn = document.querySelector('.modal-close-btn');
@@ -18,8 +25,11 @@ async function onClick (evt){
         const id = target.getAttribute('id')
         const obj = await getMovieById(id);
         const filmObj = obj.data;
+        localStorage.setItem('movie-from-open-modal', JSON.stringify(filmObj));
 
         createMarkupForOne(filmObj);
+        isWatched();
+        isQueue();
         modal.classList.remove('is-hidden');
         
         document.addEventListener("keydown", onClose)

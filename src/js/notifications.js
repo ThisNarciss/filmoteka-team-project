@@ -49,20 +49,20 @@ export function successfulAddToQueueNotification() {
 
 // Функція виводить спливаюче повідомлення про видалення фільму з переглянутих
 export function successfulDeleteFromWatchedNotification() {
-  Notify.info('The movie was successfully deleted from Watched');
+  Notify.info('The movie was successfully removed from Watched');
 }
 
 // Функція виводить спливаюче повідомлення про видалення фільму з черги
 export function successfulDeleteFromQueueNotification() {
-  Notify.info('The movie was successfully deleted from Queue');
+  Notify.info('The movie was successfully removed from Queue');
 }
 
-// Функція виводить спливаюче повідомлення про те, що фільм вже є у переглянутих
-export function isAlreadyInWatchedNotification() {
-  Notify.warning('The movie is already in Watched');
+// Функція виводить спливаюче повідомлення про те, що фільму немає у переглянутих
+export function isNotInWatchedNotification() {
+  Notify.warning('The movie is not found in Watched');
 }
 
-// Функція виводить спливаюче повідомлення, про те, що фільм вже є у черзі
-export function isAlreadyInQueueNotification() {
-  Notify.warning('The movie is already in Queue');
+// Функція виводить спливаюче повідомлення, про те, що фільму немає у черзі
+export function isNotInQueueNotification() {
+  Notify.warning('The movie is not found in Queue');
 }

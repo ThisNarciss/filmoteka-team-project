@@ -1,3 +1,4 @@
+import comingSoon from '../images/coming-soon.jpg';
 const trendingGallery = document.querySelector('.js-movie-card');
 
 export default function createMarkUp(arr) {
@@ -16,6 +17,15 @@ export default function createMarkUp(arr) {
 
       let startDate = '';
 
+      const posterBaseUrl = 'https://www.themoviedb.org/t/p/w500';
+
+      // const comingSoon = './images/coming-soon.jpg';
+
+      const posterPath =
+        result.poster_path === null
+          ? `${comingSoon}`
+          : `${posterBaseUrl}${result.poster_path}`;
+
       if (Object.keys(result).includes('release_date')) {
         if (result.release_date !== '') {
           startDate = result.release_date.split('').slice(0, 4).join('');
@@ -27,11 +37,15 @@ export default function createMarkUp(arr) {
         newArrGen = newArrGen.join(', ');
       }
 
+      // if ((result.poster_path = null)) {
+      //   result.poster_path = comingSoon;
+      // }
+
       return `<li id="${result.id}" class="movie-card__list">
                 <article>
-                  <img class="movie-card__poster" src="https://www.themoviedb.org/t/p/w500${result.poster_path}" loading="lazy" alt="${result.title}">
+                  <img class="movie-card__poster" src="${posterPath}" loading="lazy" alt="${result.title}">
+                  <div class="js-genres">
                   <h2 class="movie-card__title" data-id="${result.id}">${result.title}</h2>
-                    <div class="js-genres">
                        <p class="movie-card__geners">${newArrGen} | ${startDate}</p>
                     
                     </div>

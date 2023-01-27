@@ -1,4 +1,8 @@
 .movie-card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 500;
@@ -29,9 +33,8 @@
 
 @media screen and (min-width: 768px) {
   .movie-card {
-    display: flex;
     flex-wrap: wrap;
-    // justify-content: center;
+    justify-content: left;
 
     gap: 32px;
 
@@ -69,6 +72,7 @@
     }
 
     &__poster {
+      height: 574px;
       margin-bottom: 12px;
       border-radius: 5px;
     }

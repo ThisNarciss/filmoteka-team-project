@@ -4,7 +4,7 @@ export default function createMarkUp(arr) {
   trendingGallery.innerHTML = '';
   const arrData = arr.results;
   const arrGen = JSON.parse(localStorage.getItem('genres')).genres;
-  console.log(arrData);
+
   const murkUp = arrData
     .map(result => {
       const gen = result.genre_ids.map(num => {
@@ -12,22 +12,27 @@ export default function createMarkUp(arr) {
         return findGen;
       });
 
-      const newArrGen = gen.map(obj => obj.name);
+      let newArrGen = gen.map(obj => obj.name);
 
-      console.log('newArrGen', newArrGen.slice(0, 2).join(', ') + ', Other');
+      let startDate = '';
+
+      if (Object.keys(result).includes('release_date')) {
+        if (result.release_date !== '') {
+          startDate = result.release_date.split('').slice(0, 4).join('');
+        }
+      }
+      if (newArrGen.length > 2) {
+        newArrGen = newArrGen.slice(0, 2).join(', ') + ', Other';
+      } else {
+        newArrGen = newArrGen.join(', ');
+      }
 
       return `<li id="${result.id}" class="movie-card__list">
                 <article>
-                  <img class="movie-card__poster" src="https://www.themoviedb.org/t/p/w500${
-                    result.poster_path
-                  }" loading="lazy" alt="${result.title}">
-                  <h2 class="movie-card__title" data-id="${result.id}">${
-        result.title
-      }</h2>
+                  <img class="movie-card__poster" src="https://www.themoviedb.org/t/p/w500${result.poster_path}" loading="lazy" alt="${result.title}">
+                  <h2 class="movie-card__title" data-id="${result.id}">${result.title}</h2>
                     <div class="js-genres">
-                       <p class="movie-card__geners">${
-                         newArrGen.slice(0, 2).join(', ') + ', Other'
-                       } | ${result.release_date.split('-')[0]}</p>
+                       <p class="movie-card__geners">${newArrGen} | ${startDate}</p>
                     
                     </div>
               </article>

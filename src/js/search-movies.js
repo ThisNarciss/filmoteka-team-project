@@ -1,6 +1,7 @@
 import axios from 'axios';
 import createMarkUp from './create-mark-up';
 import { movieTrending } from './fetch-movies';
+import pagination from './pagination';
 import {
   noMatchesNotification,
   emptyQueryNotification,
@@ -27,19 +28,23 @@ export function onSearchSubmit(evt) {
         noMatchesNotification();
         returnToMain();
       } else {
+        localStorage.setItem('film-name', searchQuery);
         createMarkUp(response);
+        pagination(1, response.total_pages);
       }
     });
   }
+  localStorage.removeItem('render-key');
+  localStorage.setItem('render-key', 'search-movies');
   evt.currentTarget.reset();
 }
 
-async function goSearch(query) {
+export default async function goSearch(query, page = 1) {
   try {
     const response = await axios.get(
-      `https://api.themoviedb.org/3/search/movie?api_key=d60997a7e23cda835c1c23368c69f903&query=${query}`
+      `https://api.themoviedb.org/3/search/movie?api_key=d60997a7e23cda835c1c23368c69f903&query=${query}&page=${page}`
     );
-    const arr = response.data.results;
+    const arr = response.data;
     return arr;
   } catch (error) {
     console.error(error);

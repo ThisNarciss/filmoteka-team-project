@@ -71,3 +71,13 @@
   background-color: var(--accent-color);
   color: var(--default-bgc);
 }
+
+.item-none {
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
+}
+
+.btn-pointer-event {
+  pointer-events: none;
+}

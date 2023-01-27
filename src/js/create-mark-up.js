@@ -27,9 +27,16 @@ export default function createMarkUp(arr) {
         newArrGen = newArrGen.join(', ');
       }
 
+      let posterLink = '#';
+
+      if (result.poster_path !== null) {
+        posterLink = `https://www.themoviedb.org/t/p/w500${result.poster_path}`;
+      }
+      console.log(posterLink);
+
       return `<li id="${result.id}" class="movie-card__list">
                 <article>
-                  <img class="movie-card__poster" src="https://www.themoviedb.org/t/p/w500${result.poster_path}" loading="lazy" alt="${result.title}">
+                  <img class="movie-card__poster" src="https://www.themoviedb.org/t/p/w500${posterLink}" loading="lazy" alt="${result.title}">
                   <h2 class="movie-card__title" data-id="${result.id}">${result.title}</h2>
                     <div class="js-genres">
                        <p class="movie-card__geners">${newArrGen} | ${startDate}</p>

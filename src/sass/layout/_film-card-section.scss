@@ -12,6 +12,11 @@
   }
 
   &__poster {
+    background-image: url(/src/images/no-photo.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    height: 594px;
     margin-bottom: 10px;
     border-radius: 5px;
   }

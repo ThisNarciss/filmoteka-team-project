@@ -20,6 +20,7 @@ list.addEventListener('click', onClick);
 async function onClick(evt) {
   try {
     evt.preventDefault();
+    document.addEventListener("click", onBackdropClick)
     const target = evt.target.closest('li');
     const id = target.getAttribute('id');
     const obj = await getMovieById(id);
@@ -106,4 +107,13 @@ function onClose(evt) {
 function onCloseClick() {
   modal.classList.add('is-hidden');
   closeBtn.removeEventListener('click', onCloseClick);
+}
+
+
+function onBackdropClick(evt){
+  const target = evt.target;
+  if(target.className === "backdrop"){
+    modal.classList.add('is-hidden');
+    document.removeEventListener('click', onBackdropClick);
+  }
 }

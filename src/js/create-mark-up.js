@@ -28,9 +28,14 @@ export default function createMarkUp(arr) {
         if (result.release_date !== '') {
           startDate = result.release_date.split('').slice(0, 4).join('');
         }
+        if (result.release_date === '') {
+          startDate = ' . . . .';
+        }
       }
       if (newArrGen.length > 2) {
         newArrGen = newArrGen.slice(0, 2).join(', ') + ', Other';
+      } else if (newArrGen.length < 1) {
+        newArrGen = 'info is being specified';
       } else {
         newArrGen = newArrGen.join(', ');
       }

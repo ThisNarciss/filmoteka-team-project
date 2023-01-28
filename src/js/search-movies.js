@@ -34,7 +34,7 @@ export function onSearchSubmit(evt) {
       }
     });
   }
-  localStorage.removeItem('render-key');
+  
   localStorage.setItem('render-key', 'search-movies');
   evt.currentTarget.reset();
 }

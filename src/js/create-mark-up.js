@@ -35,7 +35,7 @@ export default function createMarkUp(arr) {
       if (newArrGen.length > 2) {
         newArrGen = newArrGen.slice(0, 2).join(', ') + ', Other';
       } else if (newArrGen.length < 1) {
-        newArrGen = 'info is being specified';
+        newArrGen = 'Info is not specified';
       } else {
         newArrGen = newArrGen.join(', ');
       }

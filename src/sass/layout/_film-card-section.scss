@@ -1,4 +1,8 @@
 .movie-card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 500;
@@ -16,7 +20,7 @@
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
-    height: 594px;
+    height: 402px;
     margin-bottom: 10px;
     border-radius: 5px;
   }
@@ -36,7 +40,6 @@
   .movie-card {
     display: flex;
     flex-wrap: wrap;
-    // justify-content: center;
 
     gap: 32px;
 
@@ -50,6 +53,8 @@
 
     &__poster {
       margin-bottom: 8px;
+
+      height: 455px;
     }
 
     &__title {
@@ -74,6 +79,7 @@
     }
 
     &__poster {
+      height: 574px;
       margin-bottom: 12px;
       border-radius: 5px;
     }

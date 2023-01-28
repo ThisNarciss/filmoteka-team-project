@@ -20,7 +20,7 @@ list.addEventListener('click', onClick);
 async function onClick(evt) {
   try {
     evt.preventDefault();
-    document.addEventListener("click", onBackdropClick)
+    document.addEventListener('click', onBackdropClick);
     const target = evt.target.closest('li');
     const id = target.getAttribute('id');
     const obj = await getMovieById(id);
@@ -55,7 +55,7 @@ function createMarkupForOne(obj) {
   });
 
   console.log(genresArr);
-  imgBox.innerHTML = `<img src="https://image.tmdb.org/t/p/w500${obj.poster_path}" alt="${obj.title}" />`;
+  imgBox.innerHTML = `<img src="https://image.tmdb.org/t/p/w500${obj.poster_path}" alt="${obj.title}" class="modal-img"/>`;
   modalAbout.innerHTML = `<h2 class="modal-title">${obj.title}</h2>
         <table><tbody>
       <tr>
@@ -109,10 +109,9 @@ function onCloseClick() {
   closeBtn.removeEventListener('click', onCloseClick);
 }
 
-
-function onBackdropClick(evt){
+function onBackdropClick(evt) {
   const target = evt.target;
-  if(target.className === "backdrop"){
+  if (target.className === 'backdrop') {
     modal.classList.add('is-hidden');
     document.removeEventListener('click', onBackdropClick);
   }

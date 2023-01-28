@@ -43,7 +43,7 @@
     transform: translate(-50%, -50%);
   }
 
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1280px) {
     padding: 40px 12px;
     width: 806px;
   }
@@ -74,7 +74,7 @@
     display: flex;
     gap: 68px;
   }
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1280px) {
     gap: 16px;
   }
 }
@@ -93,21 +93,25 @@
     height: 374px;
   }
 
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1280px) {
     width: 375px;
     height: 478px;
   }
 }
-
+.modal-img {
+  max-height: 478px;
+  width: 100%;
+}
 .modal-film-content {
   padding: 0;
   color: var(--base-text-color);
+  margin-bottom: 20px;
 
   @media screen and (min-width: 768px) {
     width: 264px;
   }
 
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1280px) {
     width: 390px;
   }
 }
@@ -117,7 +121,7 @@
   font-size: 20px;
   line-height: 1.15;
   text-transform: uppercase;
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1280px) {
     font-size: 30px;
     line-height: 1.15;
   }
@@ -133,7 +137,7 @@ table {
 }
 .td {
   width: 108px;
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1280px) {
     width: 152px;
   }
 }
@@ -162,20 +166,7 @@ table {
   line-height: 1.33;
   text-transform: uppercase;
 }
-.description-text {
-  margin-bottom: 20px;
-  overflow-y: auto;
-  width: 240px;
-  height: 260px;
-  @media screen and (min-width: 768px) {
-    width: 264px;
-    height: 236px;
-  }
-  @media screen and (min-width: 1200px) {
-    width: 391px;
-    height: 184px;
-  }
-}
+
 .modal-select-btn {
   display: flex;
   gap: 20px;
@@ -183,7 +174,7 @@ table {
   @media screen and (min-width: 768px) {
     gap: 15px;
   }
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1280px) {
     margin-left: 8px;
   }
 }
@@ -212,7 +203,7 @@ table {
     padding-bottom: 12px;
     width: 125px;
   }
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1280px) {
     padding-top: 14px;
     padding-right: 10px;
     padding-left: 10px;

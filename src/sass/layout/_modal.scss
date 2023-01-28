@@ -23,21 +23,21 @@
 }
 .modal-film-card {
   position: absolute;
+
   top: 20px;
   left: 50%;
-  max-width: 280px;
+  width: 280px;
   padding: 48px 20px 40px 20px;
   transform: translateX(-50%);
 
   background-color: var(--default-bgc);
 
-  transform: translate(-50%, -50%) scale(1);
   opacity: 1;
   transition: transform var(--animation), opacity var(--animation);
 
   @media screen and (min-width: 768px) {
     top: 50%;
-    padding: 40px, 72px, 40px, 36px;
+    padding: 40px 72px 40px 36px;
     width: 704px;
   }
 
@@ -66,7 +66,15 @@
     fill: var(--accent-color);
   }
 }
-
+.modal-film-card-wrapper {
+  @media screen and (min-width: 768px) {
+    display: flex;
+    gap: 68px;
+  }
+  @media screen and (min-width: 1200px) {
+    gap: 16px;
+  }
+}
 .modal-card-box {
   overflow: hidden;
   width: 240px;
@@ -89,6 +97,9 @@
 }
 
 .modal-film-content {
+  padding: 0;
+  color: var(--base-text-color);
+
   @media screen and (min-width: 768px) {
     width: 264px;
   }
@@ -97,7 +108,55 @@
     width: 390px;
   }
 }
+.modal-title {
+  margin-bottom: 20px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.15;
+  @media screen and (min-width: 1200px) {
+    font-size: 30px;
+    line-height: 1.15;
+  }
+}
+table {
+  width: 100%;
+  margin-bottom: 20px;
+}
 
+.characteristic {
+  color: var(--grey-text-color);
+  line-height: 1.33;
+}
+.td {
+  width: 108px;
+  @media screen and (min-width: 1200px) {
+    width: 152px;
+  }
+}
+.description {
+  line-height: 1.33;
+}
+.vote {
+  display: inline-block;
+  min-width: 36px;
+  height: 16px;
+  padding: 1px 10px;
+  border-radius: 5px;
+
+  color: var(--white-text-color);
+  background-color: var(--accent-color);
+}
+.description-title {
+  margin-bottom: 8px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  text-transform: uppercase;
+}
+.description-text {
+  margin-bottom: 20px;
+  overflow-y: scroll;
+}
 .modal-select-btn {
   display: flex;
   gap: 20px;
@@ -105,13 +164,22 @@
   @media screen and (min-width: 768px) {
     gap: 15px;
   }
+  @media screen and (min-width: 1200px) {
+    margin-left: 8px;
+  }
 }
 
 .watched-btn,
 .queue-btn {
-  padding: 6px 27px;
+  padding: 6px 12px;
   width: 110px;
-  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  text-align: center;
+  text-transform: uppercase;
 
   @media screen and (min-width: 768px) {
     padding-top: 14px;
@@ -126,5 +194,11 @@
     padding-left: 10px;
     padding-bottom: 12px;
     width: 136px;
+  }
+  &:hover,
+  &:focus {
+    border: none;
+    background-color: var(--accent-color);
+    color: var(--white-text-color);
   }
 }

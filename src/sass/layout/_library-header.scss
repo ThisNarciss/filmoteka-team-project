@@ -9,18 +9,14 @@
       rgba(0, 0, 0, 0.56)
     ),
     url(../images/rectangle-mobile-1@1x.jpg);
-  background-color: rgba(141, 40, 75, 0.4);
+  background-color: rgba(0, 0, 0, 0.56);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
 
-  @media screen and (max-width: 767px) {
-    padding-bottom: 62px;
-  }
   @media screen and (min-width: 768px) {
     max-width: 768px;
-    max-height: 219px;
-    padding-bottom: 60px;
+    max-height: 216px;
     background-size: 768px 219px;
     background-image: linear-gradient(
         to right,
@@ -83,7 +79,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .library-navigation__logo-text {
@@ -131,17 +127,10 @@
   }
 }
 
-.library-navigation__item {
-  padding-top: 44px;
-  padding-bottom: 44px;
-  @media screen and (min-width: 768px) {
-    padding-top: 49px;
-    padding-bottom: 49px;
-  }
-}
-
 .library-navigation__link {
   display: block;
+  padding-top: 44px;
+  padding-bottom: 44px;
   line-height: 1.17;
   text-transform: uppercase;
   transition: color 250ms ease-out;
@@ -149,13 +138,16 @@
   &:focus {
     color: var(--accent-color);
   }
+  @media screen and (min-width: 768px) {
+    padding-top: 49px;
+    padding-bottom: 49px;
+  }
 }
 
 .library-navigation__link--current {
   position: relative;
   &::after {
     position: absolute;
-    bottom: -2px;
     content: '';
     display: block;
     width: 100%;

@@ -73,7 +73,7 @@ function createMarkupForOne(obj) {
       </tr>
       <tr>
         <td class="characteristic td">Original title</td>
-        <td class="description">${obj.title}</td>
+        <td class="description description-title">${obj.title}</td>
       </tr>
       <tr>
         <td class="characteristic td">Genre</td>

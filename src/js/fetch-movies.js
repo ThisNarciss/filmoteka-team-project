@@ -7,7 +7,7 @@ const API_KEY = '687f60735406ee0172c31461de2476ff';
 
 const TREND_URL = `/trending/movie/week`;
 const GENRES_URL = `/genre/movie/list`;
-localStorage.removeItem('render-key');
+
 localStorage.setItem('render-key', 'fetch-movies');
 axios
   .get(`${GENRES_URL}?api_key=${API_KEY}&language=en-US`)

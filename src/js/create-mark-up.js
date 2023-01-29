@@ -2,6 +2,12 @@ import { Loading } from 'notiflix/build/notiflix-loading-aio';
 import comingSoon from '../images/coming-soon.jpg';
 const trendingGallery = document.querySelector('.js-movie-card');
 
+Loading.init({
+  svgSize: '120px',
+  svgColor: '#c4c4c4',
+  backgroundColor: 'rgba(0, 0, 0, 0.3)',
+});
+
 export default function createMarkUp(arr) {
   Loading.circle();
 

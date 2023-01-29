@@ -8,6 +8,14 @@ const API_KEY = '687f60735406ee0172c31461de2476ff';
 const TREND_URL = `/trending/movie/week`;
 const GENRES_URL = `/genre/movie/list`;
 
+const navCurrentLink = document.querySelector('.js-library-page');
+
+// localStorage.setItem('library-page', JSON.stringify(false));
+
+// navCurrentLink.addEventListener('click', () => {
+//   localStorage.setItem('library-page', JSON.stringify(true));
+// });
+
 localStorage.setItem('render-key', 'fetch-movies');
 axios
   .get(`${GENRES_URL}?api_key=${API_KEY}&language=en-US`)

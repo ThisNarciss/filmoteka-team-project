@@ -57,8 +57,15 @@ function createMarkupForOne(obj) {
     return obj.name;
   });
 
+  let ifPhotoTrue = `https://image.tmdb.org/t/p/w500${obj.poster_path}`;
+
+  if(obj.poster_path === null){
+    ifPhotoTrue = `https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/No_image_available_500_x_500.svg/500px-No_image_available_500_x_500.svg.png`
+  }
+  
+
   console.log(genresArr);
-  imgBox.innerHTML = `<img src="https://image.tmdb.org/t/p/w500${obj.poster_path}" alt="${obj.title}" class="modal-img"/>`;
+  imgBox.innerHTML = `<img src="${ifPhotoTrue}" alt="${obj.title}" class="modal-img"/>`;
   modalAbout.innerHTML = `<h2 class="modal-title">${obj.title}</h2>
         <table><tbody>
       <tr>

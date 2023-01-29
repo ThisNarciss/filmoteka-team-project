@@ -22,6 +22,7 @@ list.addEventListener('click', onClick);
 async function onClick(evt) {
   try {
     evt.preventDefault();
+    body.style.overflow = 'hidden';
     document.addEventListener("click", onBackdropClick)
     const target = evt.target.closest('li');
     const id = target.getAttribute('id');
@@ -121,5 +122,3 @@ function onBackdropClick(evt) {
     body.style.overflow = 'visible';
   }
 }
-
-console.log('hello')

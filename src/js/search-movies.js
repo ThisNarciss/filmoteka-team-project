@@ -7,6 +7,7 @@ import {
   emptyQueryNotification,
   errorNotification,
 } from './notifications';
+import { showLoader } from './loader';
 
 const trendingGallery = document.querySelector('.js-movie-card');
 
@@ -24,13 +25,17 @@ export function onSearchSubmit(evt) {
     returnToMain();
   } else {
     goSearch(searchQuery, (page = 1)).then(function (response) {
-      if (response.results.length === 0) {
-        noMatchesNotification();
-        returnToMain();
+      if (response.ok) {
+        if (response.results.length === 0) {
+          noMatchesNotification();
+          returnToMain();
+        } else {
+          localStorage.setItem('film-name', searchQuery);
+          createMarkUp(response);
+          pagination(1, response.total_pages);
+        }
       } else {
-        localStorage.setItem('film-name', searchQuery);
-        createMarkUp(response);
-        pagination(1, response.total_pages);
+        return;
       }
     });
   }
@@ -47,7 +52,9 @@ export default async function goSearch(query, page = 1) {
     const arr = response.data;
     return arr;
   } catch (error) {
-    console.error(error);
+    returnToMain();
+    errorNotification();
+    // console.error(error);
   }
 }
 

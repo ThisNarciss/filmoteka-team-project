@@ -1,10 +1,16 @@
-import { movieTrending } from './fetch-movies';
-import createMurkUp from './create-mark-up';
-import searchMovies from './search-movies';
-// import createLibraryMarkUp from './library-movies';
-// import countsAllPages from './counts-all-Pages';
+import createLibraryMarkUp from './library-mark-up';
+import chunk from './chunk-func';
+import onClickBtnOueue from './library-movies';
 
+const btnQueue = document.querySelector('.js-btn-queue');
+
+const parseFilmData = JSON.parse(localStorage.getItem('watched-movies'));
+const chunkArr = chunk(parseFilmData, 9);
 const listRef = document.querySelector('.js-pagination-box');
+
+const savedQueueMovies = localStorage.getItem('queue-movies');
+const parsedQueueMovies = JSON.parse(savedQueueMovies);
+const chunkArrQueue = chunk(parsedQueueMovies, 9);
 
 let globalCurrentPage = 0;
 let childIndex = 0;
@@ -91,42 +97,24 @@ function createAccentCurrentPage(page, allPages) {
 function renderPaginationMurkUp(evt) {
   if (Boolean(evt.target.closest('.btn-right'))) {
     globalCurrentPage += 1;
-    if (localStorage.getItem('render-key') === 'search-movies') {
-      searchMovies(localStorage.getItem('film-name'), globalCurrentPage).then(
-        data => {
-          createMurkUp(data);
-
-          pagination(globalCurrentPage, data.total_pages);
-        }
-      );
-    }
-    if (localStorage.getItem('render-key') === 'fetch-movies') {
-      movieTrending(globalCurrentPage).then(data => {
-        createMurkUp(data);
-
-        pagination(globalCurrentPage, data.total_pages);
-      });
+    if (btnQueue.classList.contains('pag-queue')) {
+      createLibraryMarkUp(chunkArrQueue[globalCurrentPage - 1]);
+      pagination(globalCurrentPage, chunkArrQueue.length);
+    } else {
+      createLibraryMarkUp(chunkArr[globalCurrentPage - 1]);
+      pagination(globalCurrentPage, chunkArr.length);
     }
 
     return;
   }
   if (Boolean(evt.target.closest('.btn-left'))) {
     globalCurrentPage -= 1;
-    if (localStorage.getItem('render-key') === 'search-movies') {
-      searchMovies(localStorage.getItem('film-name'), globalCurrentPage).then(
-        data => {
-          createMurkUp(data);
-
-          pagination(globalCurrentPage, data.total_pages);
-        }
-      );
-    }
-    if (localStorage.getItem('render-key') === 'fetch-movies') {
-      movieTrending(globalCurrentPage).then(data => {
-        createMurkUp(data);
-
-        pagination(globalCurrentPage, data.total_pages);
-      });
+    if (btnQueue.classList.contains('pag-queue')) {
+      createLibraryMarkUp(chunkArrQueue[globalCurrentPage - 1]);
+      pagination(globalCurrentPage, chunkArrQueue.length);
+    } else {
+      createLibraryMarkUp(chunkArr[globalCurrentPage - 1]);
+      pagination(globalCurrentPage, chunkArr.length);
     }
 
     return;
@@ -140,18 +128,12 @@ function renderPaginationMurkUp(evt) {
   }
 
   const page = Number(evt.target.textContent);
-  if (localStorage.getItem('render-key') === 'search-movies') {
-    searchMovies(localStorage.getItem('film-name'), page).then(data => {
-      createMurkUp(data);
 
-      pagination(page, data.total_pages);
-    });
-  }
-
-  if (localStorage.getItem('render-key') === 'fetch-movies') {
-    movieTrending(page).then(data => {
-      createMurkUp(data);
-      pagination(page, data.total_pages);
-    });
+  if (btnQueue.classList.contains('pag-queue')) {
+    createLibraryMarkUp(chunkArrQueue[page - 1]);
+    pagination(page, chunkArrQueue.length);
+  } else {
+    createLibraryMarkUp(chunkArr[page - 1]);
+    pagination(page, chunkArr.length);
   }
 }

@@ -7,6 +7,11 @@ import {
   isQueue,
 } from './add-to-library';
 
+
+
+
+console.log('hello')
+
 const closeBtn = document.querySelector('.modal-close-btn');
 const list = document.querySelector('.movie-card');
 const imgBox = document.querySelector('.modal-card-box');
@@ -122,6 +127,3 @@ function onBackdropClick(evt){
     body.style.overflow = 'visible';
   }
 }
-
-
-console.log('hello')

@@ -7,6 +7,11 @@ import {
   isQueue,
 } from './add-to-library';
 
+
+
+
+console.log('hello')
+
 const closeBtn = document.querySelector('.modal-close-btn');
 const list = document.querySelector('.movie-card');
 const imgBox = document.querySelector('.modal-card-box');
@@ -14,13 +19,14 @@ const modalAbout = document.querySelector('.modal-film-content');
 const modal = document.querySelector('.backdrop');
 const watchedBtn = document.querySelector('.watched-btn');
 const queueBtn = document.querySelector('.queue-btn');
+const body = document.querySelector('body')
 
 list.addEventListener('click', onClick);
 
 async function onClick(evt) {
   try {
     evt.preventDefault();
-    document.addEventListener('click', onBackdropClick);
+    document.addEventListener("click", onBackdropClick)
     const target = evt.target.closest('li');
     const id = target.getAttribute('id');
     const obj = await getMovieById(id);
@@ -101,12 +107,14 @@ function onClose(evt) {
   if (evt.key === 'Escape') {
     modal.classList.add('is-hidden');
     document.removeEventListener('click', onClose);
+    body.style.overflow = 'visible';
   }
 }
 
 function onCloseClick() {
   modal.classList.add('is-hidden');
   closeBtn.removeEventListener('click', onCloseClick);
+  body.style.overflow = 'visible';
 }
 
 function onBackdropClick(evt) {
@@ -114,5 +122,6 @@ function onBackdropClick(evt) {
   if (target.className === 'backdrop') {
     modal.classList.add('is-hidden');
     document.removeEventListener('click', onBackdropClick);
+    body.style.overflow = 'visible';
   }
 }

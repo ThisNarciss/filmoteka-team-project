@@ -23,8 +23,8 @@ export function onSearchSubmit(evt) {
     emptyQueryNotification();
     returnToMain();
   } else {
-    goSearch(searchQuery).then(function (response) {
-      if (response.length === 0) {
+    goSearch(searchQuery, (page = 1)).then(function (response) {
+      if (response.results.length === 0) {
         noMatchesNotification();
         returnToMain();
       } else {
@@ -34,7 +34,7 @@ export function onSearchSubmit(evt) {
       }
     });
   }
-  
+
   localStorage.setItem('render-key', 'search-movies');
   evt.currentTarget.reset();
 }
@@ -56,11 +56,10 @@ export function clearMarkup() {
 }
 
 function returnToMain() {
-  movieTrending().then(function (response) {
-    if (response.length === 0) {
-      noMatchesNotification();
-    } else {
-      createMarkUp(response);
-    }
-  });
+  movieTrending()
+    .then(data => {
+      createMarkUp(data);
+      pagination(1, data.total_pages);
+    })
+    .catch(console.error());
 }

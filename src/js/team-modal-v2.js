@@ -2,7 +2,7 @@
   const refs = {
     openModalBtn: document.querySelector('[data-team-modal-open]'),
     closeModalBtn: document.querySelector('[data-team-modal-close]'),
-    modal: document.querySelector('[data-team-modal]'),
+    modal: document.querySelector('.backdrop-team'),
   };
 
   refs.openModalBtn.addEventListener('click', toggleModal);
@@ -21,3 +21,14 @@
     }
   }
 })();
+
+const modal = document.querySelector('.backdrop-team');
+modal.addEventListener('click', onBackdropClick);
+
+function onBackdropClick(evt) {
+  const target = evt.target;
+  if (target.className === 'backdrop-team') {
+    modal.classList.add('is-hidden');
+    document.removeEventListener('click', onBackdropClick);
+  }
+}

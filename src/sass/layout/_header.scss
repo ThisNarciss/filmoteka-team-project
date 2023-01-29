@@ -3,12 +3,17 @@
   width: 100%;
   height: 230px;
   margin: 0 auto;
-  background-image: url(../images/abstract-background-with-red-lines-mobile-1@1x.jpg);
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.56),
+      rgba(0, 0, 0, 0.56)
+    ),
+    url(../images/abstract-background-with-red-lines-mobile-1@1x.jpg);
+  background-color: rgba(0, 0, 0, 0.56);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   background-clip: border-box;
-  opacity: 0.9;
 
   @media screen and (min-device-pixel-ratio: 2) and (max-width: 767px),
     screen and (min-resolution: 192dpi) and (max-width: 767px),

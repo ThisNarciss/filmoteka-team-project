@@ -14,6 +14,14 @@ btnWatched.addEventListener('click', onClickBtnWatched);
 //   onClickBtnWatched,
 // };
 
+const parseFilmData = JSON.parse(localStorage.getItem('watched-movies'));
+
+const chunkArr = chunk(parseFilmData, 9);
+
+// window.matchMedia('(min-width: 768px)').addEventListener('change', e => {
+//   if (!e.matches) return;
+// });
+
 export default function onClickBtnOueue() {
   // list.innerHTML = '';
   btnQueue.classList.add('pag-queue');
@@ -41,10 +49,6 @@ function onClickBtnWatched() {
     console.log(error);
   }
 }
-
-const parseFilmData = JSON.parse(localStorage.getItem('watched-movies'));
-
-const chunkArr = chunk(parseFilmData, 9);
 
 createLibraryMarkUp(chunkArr[0]);
 pagination(1, chunkArr.length);

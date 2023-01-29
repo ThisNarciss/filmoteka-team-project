@@ -71,6 +71,14 @@ export default function pagination(currentPage, allPages) {
   listRef.innerHTML = murkUp;
 
   createAccentCurrentPage(currentPage, allPages);
+  const { height: cardHeight } = document
+    .querySelector('.film-card-box')
+    .firstElementChild.getBoundingClientRect();
+
+  window.scrollBy({
+    top: -(cardHeight * 2),
+    behavior: 'smooth',
+  });
 }
 
 function createAccentCurrentPage(page, allPages) {

@@ -6,4 +6,11 @@
   --accent-color: #ff6b01;
   --footer-text-color: #545454;
   --header-text-color: #ffffff;
+  --team-member-box-shadow-color1: rgba(0, 0, 0, 0.12);
+  --team-member-box-shadow-color2: rgba(0, 0, 0, 0.14);
+  --team-member-box-shadow-color3: rgba(0, 0, 0, 0.2);
+
+  /* animations */
+  --animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  --animation-duration: 250ms;
 }

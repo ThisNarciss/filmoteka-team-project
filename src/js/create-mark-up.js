@@ -1,7 +1,10 @@
+import { Loading } from 'notiflix/build/notiflix-loading-aio';
 import comingSoon from '../images/coming-soon.jpg';
 const trendingGallery = document.querySelector('.js-movie-card');
 
 export default function createMarkUp(arr) {
+  Loading.circle();
+
   trendingGallery.innerHTML = '';
   const arrData = arr.results;
   const arrGen = JSON.parse(localStorage.getItem('genres')).genres;
@@ -54,4 +57,5 @@ export default function createMarkUp(arr) {
     .join('');
 
   trendingGallery.insertAdjacentHTML('beforeend', murkUp);
+  Loading.remove(1000);
 }

@@ -7,6 +7,7 @@ import {
   emptyQueryNotification,
   errorNotification,
 } from './notifications';
+import { showLoader, hideLoader } from './loader';
 
 const trendingGallery = document.querySelector('.js-movie-card');
 
@@ -41,10 +42,12 @@ export function onSearchSubmit(evt) {
 
 export default async function goSearch(query, page = 1) {
   try {
+    showLoader();
     const response = await axios.get(
       `https://api.themoviedb.org/3/search/movie?api_key=d60997a7e23cda835c1c23368c69f903&query=${query}&page=${page}`
     );
     const arr = response.data;
+    hideLoader();
     return arr;
   } catch (error) {
     console.error(error);
@@ -58,8 +61,10 @@ export function clearMarkup() {
 function returnToMain() {
   movieTrending()
     .then(data => {
+      showLoader();
       createMarkUp(data);
       pagination(1, data.total_pages);
+      hideLoader();
     })
     .catch(console.error());
 }

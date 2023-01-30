@@ -70,3 +70,7 @@ export function isNotInWatchedNotification() {
 export function isNotInQueueNotification() {
   Notify.warning('The movie is not found in Queue', notifyOptions);
 }
+
+export function failRequest() {
+  Notify.warning('Why did you deliberately break the code?', notifyOptions);
+}

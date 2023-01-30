@@ -1,11 +1,14 @@
 import axios from 'axios';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
+// import { handleAddToWatched } from './add-to-library';
 import {
   handleAddToWatched,
   handleAddToQueue,
   isWatched,
   isQueue,
 } from './add-to-library';
+
+import { onClickBtnWatched, onClickBtnOueue } from './library-movies';
 
 Loading.init({
   svgSize: '120px',
@@ -22,6 +25,8 @@ const watchedBtn = document.querySelector('.watched-btn');
 const queueBtn = document.querySelector('.queue-btn');
 const body = document.querySelector('body');
 const modalCard = document.querySelector('.modal-film-card');
+const watchedButtonInLibrary = document.querySelector('.js-btn-watched');
+const queueButtonInLibrary = document.querySelector('.js-btn-queue');
 
 list.addEventListener('click', onClick);
 
@@ -125,7 +130,7 @@ function onClose(evt) {
 function onCloseClick() {
   modal.classList.add('is-hidden');
   closeBtn.removeEventListener('click', onCloseClick);
-  // libraryRenderAfterMovieRemove();
+  libraryRenderAfterMovieRemove();
   body.style.overflow = 'visible';
 }
 
@@ -134,23 +139,23 @@ function onBackdropClick(evt) {
   if (target.className === 'backdrop') {
     modal.classList.add('is-hidden');
     document.removeEventListener('click', onBackdropClick);
-    // libraryRenderAfterMovieRemove();
+    libraryRenderAfterMovieRemove();
     body.style.overflow = 'visible';
   }
 }
 
-// function libraryRenderAfterMovieRemove() {
-//   if (modalCard.classList.contains('modal-in-library')) {
-//     if (
-//       watchedButtonInLibrary.classList.contains(
-//         'library-header__button--watched'
-//       )
-//     ) {
-//       onClickBtnWatched();
-//     } else if (
-//       queueButtonInLibrary.classList.contains('library-header__button--queue')
-//     ) {
-//       onClickBtnOueue();
-//     }
-//   }
-// }
+function libraryRenderAfterMovieRemove() {
+  if (modalCard.classList.contains('modal-in-library')) {
+    if (
+      watchedButtonInLibrary.classList.contains(
+        'library-header__button--watched'
+      )
+    ) {
+      onClickBtnWatched();
+    } else if (
+      queueButtonInLibrary.classList.contains('library-header__button--queue')
+    ) {
+      onClickBtnOueue();
+    }
+  }
+}

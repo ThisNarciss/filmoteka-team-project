@@ -9,6 +9,7 @@ import {
 } from './add-to-library';
 
 import { onClickBtnWatched, onClickBtnOueue } from './library-movies';
+import { renderLibrary, renderLibraryQueue } from './library-movies';
 
 Loading.init({
   svgSize: '120px',
@@ -35,6 +36,7 @@ async function onClick(evt) {
     evt.preventDefault();
     body.style.overflow = 'hidden';
     document.addEventListener('click', onBackdropClick);
+    // document.addEventListener('click', renderPaginationMurkUp);
     const target = evt.target.closest('li');
     const id = target.getAttribute('id');
     const obj = await getMovieById(id);
@@ -49,7 +51,9 @@ async function onClick(evt) {
     modal.classList.remove('is-hidden');
 
     document.addEventListener('keydown', onClose);
+    // document.addEventListener('keydown', renderPaginationMurkUp);
     closeBtn.addEventListener('click', onCloseClick);
+    // closeBtn.addEventListener('click', renderPaginationMurkUp);
 
     if (!modal.classList.contains('is-hidden')) {
       watchedBtn.addEventListener('click', handleAddToWatched);
@@ -76,7 +80,6 @@ function createMarkupForOne(obj) {
     ifPhotoTrue = `https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/No_image_available_500_x_500.svg/500px-No_image_available_500_x_500.svg.png`;
   }
 
-  console.log(genresArr);
   imgBox.innerHTML = `<img src="${ifPhotoTrue}" alt="${obj.title}" class="modal-img"/>`;
   modalAbout.innerHTML = `<h2 class="modal-title">${obj.title}</h2>
         <table><tbody>
@@ -122,7 +125,8 @@ async function getMovieById(id) {
 function onClose(evt) {
   if (evt.key === 'Escape') {
     modal.classList.add('is-hidden');
-    document.removeEventListener('click', onClose);
+    document.removeEventListener('keydown', onClose);
+    libraryRenderAfterMovieRemove();
     body.style.overflow = 'visible';
   }
 }
@@ -151,11 +155,13 @@ function libraryRenderAfterMovieRemove() {
         'library-header__button--watched'
       )
     ) {
-      onClickBtnWatched();
+      // onClickBtnWatched();
+      document.location.reload();
     } else if (
       queueButtonInLibrary.classList.contains('library-header__button--queue')
     ) {
-      onClickBtnOueue();
+      // onClickBtnOueue();
+      document.location.reload();
     }
   }
 }

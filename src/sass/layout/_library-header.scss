@@ -171,7 +171,7 @@
 .library-header__button {
   min-width: 123px;
   min-height: 44px;
-  background-color: rgba(0, 0, 0, 0.56);
+  background-color: transparent;
   border-radius: 5px;
   border: 1px solid var(--header-text-color);
   font-family: inherit;
@@ -186,4 +186,14 @@
     background-color: var(--accent-color);
     border: 1px solid var(--accent-color);
   }
+}
+
+.library-header__button.library-header__button--watched {
+  background-color: var(--accent-color);
+  border: 1px solid var(--accent-color);
+}
+
+.library-header__button.library-header__button--queue {
+  background-color: var(--accent-color);
+  border: 1px solid var(--accent-color);
 }

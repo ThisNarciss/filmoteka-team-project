@@ -1,3 +1,5 @@
+import comingSoon from '../images/coming-soon.jpg';
+
 const filmsBoxRef = document.querySelector('.js-library-movie-card');
 
 export default function createLibraryMarkUp(arr) {

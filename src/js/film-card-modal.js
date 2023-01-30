@@ -65,13 +65,25 @@ function createMarkupForOne(obj) {
     return obj.name;
   });
 
+  let aboutDescription = obj.overview;
+
+  if (aboutDescription.length === Number(0)) {
+    aboutDescription =
+      'Currently description in unavailiable due to lack of information from producers';
+  }
+
+  if (genresArr.length === Number(0)) {
+    genresArr = 'Info is not specified';
+  } else {
+    genresArr = genresArr.join(', ');
+  }
+
   let ifPhotoTrue = `https://image.tmdb.org/t/p/w500${obj.poster_path}`;
 
   if (obj.poster_path === null) {
     ifPhotoTrue = `https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/No_image_available_500_x_500.svg/500px-No_image_available_500_x_500.svg.png`;
   }
 
-  console.log(genresArr);
   imgBox.innerHTML = `<img src="${ifPhotoTrue}" alt="${obj.title}" class="modal-img"/>`;
   modalAbout.innerHTML = `<h2 class="modal-title">${obj.title}</h2>
         <table><tbody>
@@ -95,12 +107,12 @@ function createMarkupForOne(obj) {
       </tr>
       <tr>
         <td class="characteristic td">Genre</td>
-        <td class="description">${genresArr.join(', ')}</td>
+        <td class="description">${genresArr}</td>
       </tr>
     </tbody>
     </table>
       <h3 class="description-title">About</h3>
-    <p class="description-text">${obj.overview}</p>`;
+    <p class="description-text">${aboutDescription}</p>`;
 }
 // -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 

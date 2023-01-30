@@ -150,19 +150,3 @@ function onBackdropClick(evt) {
     body.style.overflow = 'visible';
   }
 }
-
-// function libraryRenderAfterMovieRemove() {
-//   if (modalCard.classList.contains('modal-in-library')) {
-//     if (
-//       watchedButtonInLibrary.classList.contains(
-//         'library-header__button--watched'
-//       )
-//     ) {
-//       onClickBtnWatched();
-//     } else if (
-//       queueButtonInLibrary.classList.contains('library-header__button--queue')
-//     ) {
-//       onClickBtnOueue();
-//     }
-//   }
-// }

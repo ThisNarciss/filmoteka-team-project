@@ -1,17 +1,13 @@
 import createLibraryMarkUp from './library-mark-up';
 import chunk from './chunk-func';
-import onClickBtnOueue from './library-movies';
 
 const btnQueue = document.querySelector('.js-btn-queue');
 
-// const parseFilmData = JSON.parse(localStorage.getItem('watched-movies'));
-// const chunkArr = chunk(parseFilmData, 9);
 const listRef = document.querySelector('.js-pagination-box');
 
 const savedQueueMovies = localStorage.getItem('queue-movies');
-// const parsedQueueMovies = JSON.parse(savedQueueMovies);
-// const chunkArrQueue = chunk(parsedQueueMovies, 9);
 
+let page = 0;
 let globalCurrentPage = 0;
 let childIndex = 0;
 
@@ -77,13 +73,13 @@ export default function pagination(currentPage, allPages) {
   listRef.innerHTML = murkUp;
 
   createAccentCurrentPage(currentPage, allPages);
-  createAccentCurrentPage(currentPage, allPages);
+
   const { height: cardHeight } = document
-    .querySelector('.film-card-box')
+    .querySelector('.library-header')
     .firstElementChild.getBoundingClientRect();
 
   window.scrollBy({
-    top: -(cardHeight * 2),
+    top: -(cardHeight * 10),
     behavior: 'smooth',
   });
 }
@@ -103,7 +99,7 @@ function createAccentCurrentPage(page, allPages) {
   firstRef.classList.add('current');
 }
 
-function renderPaginationMurkUp(evt) {
+export function renderPaginationMurkUp(evt) {
   if (Boolean(evt.target.closest('.btn-right'))) {
     globalCurrentPage += 1;
     if (window.screen.width > 1280) {
@@ -208,7 +204,7 @@ function renderPaginationMurkUp(evt) {
     return;
   }
 
-  const page = Number(evt.target.textContent);
+  page = Number(evt.target.textContent);
 
   if (window.screen.width > 1280) {
     if (btnQueue.classList.contains('pag-queue')) {

@@ -7,7 +7,13 @@ import {
   emptyQueryNotification,
   errorNotification,
 } from './notifications';
-import { showLoader } from './loader';
+import { Loading } from 'notiflix/build/notiflix-loading-aio';
+
+Loading.init({
+  svgSize: '120px',
+  svgColor: '#c4c4c4',
+  backgroundColor: 'rgba(0, 0, 0, 0.3)',
+});
 
 const trendingGallery = document.querySelector('.js-movie-card');
 
@@ -16,6 +22,7 @@ const searchForm = document.querySelector('.js-search-form');
 searchForm.addEventListener('submit', onSearchSubmit);
 
 export function onSearchSubmit(evt) {
+  Loading.circle();
   evt.preventDefault();
   clearMarkup();
   const searchQuery = searchInput.value.trim();
@@ -25,7 +32,10 @@ export function onSearchSubmit(evt) {
     returnToMain();
   } else {
     goSearch(searchQuery, (page = 1)).then(function (response) {
-      if (response.ok) {
+      if (!response) {
+        noMatchesNotification();
+        returnToMain();
+      } else {
         if (response.results.length === 0) {
           noMatchesNotification();
           returnToMain();
@@ -34,8 +44,6 @@ export function onSearchSubmit(evt) {
           createMarkUp(response);
           pagination(1, response.total_pages);
         }
-      } else {
-        return;
       }
     });
   }

@@ -37,10 +37,16 @@ export default function createLibraryMarkUp(arr) {
 
       return `<li id="${result.id}" class="movie-card__list">
                 <article>
-                  <img class="movie-card__poster" src="${posterPath}" loading="lazy" alt="${result.title}">
+                  <img class="movie-card__poster" src="${posterPath}" loading="lazy" alt="${
+        result.title
+      }">
                   <div class="js-genres">
-                  <h2 class="movie-card__title" data-id="${result.id}">${result.title}</h2>
-                       <p class="movie-card__geners">${newArrGen} | ${startDate}</p>
+                  <h2 class="movie-card__title" data-id="${result.id}">${
+        result.title
+      }</h2>
+                       <p class="movie-card__geners">${newArrGen} | ${startDate} <span class="film-vote">${Number(
+        result.vote_average
+      ).toFixed(2)}</span></p>
                     
                     </div>
               </article>

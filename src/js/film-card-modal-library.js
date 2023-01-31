@@ -31,8 +31,16 @@ const queueButtonInLibrary = document.querySelector('.js-btn-queue');
 
 list.addEventListener('click', onClick);
 
+let localDataFilmLengthWatched = 0;
+let localDataFilmLengthQueue = 0;
 async function onClick(evt) {
   try {
+    localDataFilmLengthWatched = JSON.parse(
+      localStorage.getItem('watched-movies')
+    ).length;
+    localDataFilmLengthQueue = JSON.parse(
+      localStorage.getItem('queue-movies')
+    ).length;
     evt.preventDefault();
     body.style.overflow = 'hidden';
     document.addEventListener('click', onBackdropClick);
@@ -149,19 +157,22 @@ function onBackdropClick(evt) {
 }
 
 function libraryRenderAfterMovieRemove() {
-  if (modalCard.classList.contains('modal-in-library')) {
-    if (
-      watchedButtonInLibrary.classList.contains(
-        'library-header__button--watched'
-      )
-    ) {
-      // onClickBtnWatched();
-      document.location.reload();
-    } else if (
-      queueButtonInLibrary.classList.contains('library-header__button--queue')
-    ) {
-      // onClickBtnOueue();
-      document.location.reload();
-    }
+  // if (modalCard.classList.contains('modal-in-library')) {
+
+  if (
+    (localDataFilmLengthWatched !==
+      JSON.parse(localStorage.getItem('watched-movies')).length) &
+    watchedButtonInLibrary.classList.contains('library-header__button--watched')
+  ) {
+    onClickBtnWatched();
+    // document.location.reload();
+  } else if (
+    (localDataFilmLengthQueue !==
+      JSON.parse(localStorage.getItem('queue-movies')).length) &
+    queueButtonInLibrary.classList.contains('library-header__button--queue')
+  ) {
+    onClickBtnOueue();
+    // document.location.reload();
   }
+  // }
 }

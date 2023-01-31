@@ -11,6 +11,7 @@
     max-width: 280px;
 
     margin-bottom: 20px;
+    overflow: hidden;
   }
 
   &__poster {
@@ -20,7 +21,7 @@
     background-position: center;
 
     width: 280px;
-    height: 402px;
+    // height: 100%;
     margin-bottom: 10px;
     border-radius: 5px;
   }
@@ -58,7 +59,7 @@
       margin-bottom: 8px;
 
       width: 336px;
-      height: 455px;
+      // height: 455px;
 
       -webkit-filter: sepia(100%);
       filter: sepia(100%);
@@ -139,7 +140,7 @@ article {
 
     &__poster {
       width: 395px;
-      height: 574px;
+      // height: 574px;
       margin-bottom: 12px;
       border-radius: 5px;
     }

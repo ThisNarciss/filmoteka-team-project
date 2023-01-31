@@ -48,3 +48,17 @@
 .empty-library-link {
   color: var(--accent-color);
 }
+
+.film-vote {
+  text-align: center;
+
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.17;
+  padding: 3px 11px;
+  border-radius: 5px;
+  // margin-bottom: 6px;
+
+  color: var(--white-text-color);
+  background-color: var(--accent-color);
+}

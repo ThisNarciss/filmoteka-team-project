@@ -5,8 +5,6 @@ const btnQueue = document.querySelector('.js-btn-queue');
 
 const listRef = document.querySelector('.js-pagination-box');
 
-const savedQueueMovies = localStorage.getItem('queue-movies');
-
 let page = 0;
 let globalCurrentPage = 0;
 let childIndex = 0;
@@ -104,7 +102,9 @@ export function renderPaginationMurkUp(evt) {
     globalCurrentPage += 1;
     if (window.screen.width > 1280) {
       if (btnQueue.classList.contains('pag-queue')) {
-        const parsedQueueMovies = JSON.parse(savedQueueMovies);
+        const parsedQueueMovies = JSON.parse(
+          localStorage.getItem('queue-movies')
+        );
         const chunkArrQueue = chunk(parsedQueueMovies, 9);
         createLibraryMarkUp(chunkArrQueue[globalCurrentPage - 1]);
         pagination(globalCurrentPage, chunkArrQueue.length);
@@ -118,7 +118,9 @@ export function renderPaginationMurkUp(evt) {
       }
     } else if ((window.screen.width >= 768) & (window.screen.width < 1280)) {
       if (btnQueue.classList.contains('pag-queue')) {
-        const parsedQueueMovies = JSON.parse(savedQueueMovies);
+        const parsedQueueMovies = JSON.parse(
+          localStorage.getItem('queue-movies')
+        );
         const chunkArrQueue = chunk(parsedQueueMovies, 8);
         createLibraryMarkUp(chunkArrQueue[globalCurrentPage - 1]);
         pagination(globalCurrentPage, chunkArrQueue.length);
@@ -132,7 +134,9 @@ export function renderPaginationMurkUp(evt) {
       }
     } else if (window.screen.width < 768) {
       if (btnQueue.classList.contains('pag-queue')) {
-        const parsedQueueMovies = JSON.parse(savedQueueMovies);
+        const parsedQueueMovies = JSON.parse(
+          localStorage.getItem('queue-movies')
+        );
         const chunkArrQueue = chunk(parsedQueueMovies, 4);
         createLibraryMarkUp(chunkArrQueue[globalCurrentPage - 1]);
         pagination(globalCurrentPage, chunkArrQueue.length);
@@ -152,7 +156,9 @@ export function renderPaginationMurkUp(evt) {
     globalCurrentPage -= 1;
     if (window.screen.width > 1280) {
       if (btnQueue.classList.contains('pag-queue')) {
-        const parsedQueueMovies = JSON.parse(savedQueueMovies);
+        const parsedQueueMovies = JSON.parse(
+          localStorage.getItem('queue-movies')
+        );
         const chunkArrQueue = chunk(parsedQueueMovies, 9);
         createLibraryMarkUp(chunkArrQueue[globalCurrentPage - 1]);
         pagination(globalCurrentPage, chunkArrQueue.length);
@@ -166,7 +172,9 @@ export function renderPaginationMurkUp(evt) {
       }
     } else if ((window.screen.width >= 768) & (window.screen.width < 1280)) {
       if (btnQueue.classList.contains('pag-queue')) {
-        const parsedQueueMovies = JSON.parse(savedQueueMovies);
+        const parsedQueueMovies = JSON.parse(
+          localStorage.getItem('queue-movies')
+        );
         const chunkArrQueue = chunk(parsedQueueMovies, 8);
         createLibraryMarkUp(chunkArrQueue[globalCurrentPage - 1]);
         pagination(globalCurrentPage, chunkArrQueue.length);
@@ -180,7 +188,9 @@ export function renderPaginationMurkUp(evt) {
       }
     } else if (window.screen.width < 768) {
       if (btnQueue.classList.contains('pag-queue')) {
-        const parsedQueueMovies = JSON.parse(savedQueueMovies);
+        const parsedQueueMovies = JSON.parse(
+          localStorage.getItem('queue-movies')
+        );
         const chunkArrQueue = chunk(parsedQueueMovies, 4);
         createLibraryMarkUp(chunkArrQueue[globalCurrentPage - 1]);
         pagination(globalCurrentPage, chunkArrQueue.length);
@@ -208,7 +218,9 @@ export function renderPaginationMurkUp(evt) {
 
   if (window.screen.width > 1280) {
     if (btnQueue.classList.contains('pag-queue')) {
-      const parsedQueueMovies = JSON.parse(savedQueueMovies);
+      const parsedQueueMovies = JSON.parse(
+        localStorage.getItem('queue-movies')
+      );
       const chunkArrQueue = chunk(parsedQueueMovies, 9);
 
       createLibraryMarkUp(chunkArrQueue[page - 1]);
@@ -222,7 +234,9 @@ export function renderPaginationMurkUp(evt) {
     }
   } else if ((window.screen.width >= 768) & (window.screen.width < 1280)) {
     if (btnQueue.classList.contains('pag-queue')) {
-      const parsedQueueMovies = JSON.parse(savedQueueMovies);
+      const parsedQueueMovies = JSON.parse(
+        localStorage.getItem('queue-movies')
+      );
       const chunkArrQueue = chunk(parsedQueueMovies, 8);
 
       createLibraryMarkUp(chunkArrQueue[page - 1]);
@@ -236,7 +250,9 @@ export function renderPaginationMurkUp(evt) {
     }
   } else if (window.screen.width < 768) {
     if (btnQueue.classList.contains('pag-queue')) {
-      const parsedQueueMovies = JSON.parse(savedQueueMovies);
+      const parsedQueueMovies = JSON.parse(
+        localStorage.getItem('queue-movies')
+      );
       const chunkArrQueue = chunk(parsedQueueMovies, 4);
 
       createLibraryMarkUp(chunkArrQueue[page - 1]);

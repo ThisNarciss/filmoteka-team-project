@@ -68,6 +68,11 @@
       &:hover {
         -webkit-filter: sepia(0);
         filter: sepia(0);
+
+        transition-duration: 0.25s;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transform: scale(1.02);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2), 0 4px 6px rgba(0, 0, 0, 0.2);
       }
     }
 

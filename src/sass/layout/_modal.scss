@@ -170,6 +170,8 @@ table {
 .modal-select-btn {
   display: flex;
   gap: 20px;
+  flex-wrap: wrap;
+  justify-content: space-around;
 
   @media screen and (min-width: 768px) {
     gap: 15px;
@@ -180,7 +182,8 @@ table {
 }
 
 .watched-btn,
-.queue-btn {
+.queue-btn,
+.trailer-btn {
   padding: 6px 12px;
   width: 110px;
   border: 1px solid var(--border-color);

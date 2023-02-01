@@ -42,6 +42,8 @@ async function onClick(evt) {
     localStorage.setItem('movie-from-open-modal', JSON.stringify(filmObj));
 
     createMarkupForOne(filmObj);
+
+    watchTrailerButton.classList.remove('is-hidden');
     getTrailerVideos(id).then(function (response) {
       if (response.length === 0) {
         watchTrailerButton.classList.add('is-hidden');

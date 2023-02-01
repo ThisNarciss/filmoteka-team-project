@@ -7,9 +7,14 @@ import {
   isWatched,
   isQueue,
 } from './add-to-library';
+import { initializeApp } from 'firebase/app';
+import { getTrailerVideos, createTrailerModalMarkup } from './get-trailers';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { isUserInModal } from './firebase';
 
 import { onClickBtnWatched, onClickBtnOueue } from './library-movies';
 import { renderLibrary, renderLibraryQueue } from './library-movies';
+import { onClick } from './film-card-modal';
 
 Loading.init({
   svgSize: '120px',
@@ -29,18 +34,37 @@ const modalCard = document.querySelector('.modal-film-card');
 const watchedButtonInLibrary = document.querySelector('.js-btn-watched');
 const queueButtonInLibrary = document.querySelector('.js-btn-queue');
 
+const firebaseConfig = {
+  apiKey: 'AIzaSyDFRxvG-cLncd4nzHUtwRVnlgrm2OeK7W8',
+  authDomain: 'filmoteka-test-90b99.firebaseapp.com',
+  projectId: 'filmoteka-test-90b99',
+  storageBucket: 'filmoteka-test-90b99.appspot.com',
+  messagingSenderId: '222913084900',
+  appId: '1:222913084900:web:1011c02877eb5816a41bf1',
+  measurementId: 'G-V4RKSJYRFE',
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
 list.addEventListener('click', onClick);
 
 let localDataFilmLengthWatched = 0;
 let localDataFilmLengthQueue = 0;
+// onClick(evt);
 async function onClick(evt) {
   try {
-    localDataFilmLengthWatched = JSON.parse(
-      localStorage.getItem('watched-movies')
-    ).length;
-    localDataFilmLengthQueue = JSON.parse(
-      localStorage.getItem('queue-movies')
-    ).length;
+    const currentUserQueue =
+      'queue-'.concat(localStorage.getItem('user-uid')) || '';
+    const queueMovies =
+      JSON.parse(localStorage.getItem(`${currentUserQueue}`)) || [];
+    const currentUserWatched =
+      'watched-'.concat(localStorage.getItem('user-uid')) || '';
+    const watchedMovies =
+      JSON.parse(localStorage.getItem(`${currentUserWatched}`)) || [];
+
+    localDataFilmLengthWatched = watchedMovies.length;
+    localDataFilmLengthQueue = queueMovies.length;
     evt.preventDefault();
     body.style.overflow = 'hidden';
     document.addEventListener('click', onBackdropClick);
@@ -157,18 +181,24 @@ function onBackdropClick(evt) {
 }
 
 function libraryRenderAfterMovieRemove() {
+  const currentUserQueue =
+    'queue-'.concat(localStorage.getItem('user-uid')) || '';
+  const queueMovies =
+    JSON.parse(localStorage.getItem(`${currentUserQueue}`)) || [];
+  const currentUserWatched =
+    'watched-'.concat(localStorage.getItem('user-uid')) || '';
+  const watchedMovies =
+    JSON.parse(localStorage.getItem(`${currentUserWatched}`)) || [];
   // if (modalCard.classList.contains('modal-in-library')) {
 
   if (
-    (localDataFilmLengthWatched !==
-      JSON.parse(localStorage.getItem('watched-movies')).length) &
+    (localDataFilmLengthWatched !== watchedMovies.length) &
     watchedButtonInLibrary.classList.contains('library-header__button--watched')
   ) {
     onClickBtnWatched();
     // document.location.reload();
   } else if (
-    (localDataFilmLengthQueue !==
-      JSON.parse(localStorage.getItem('queue-movies')).length) &
+    (localDataFilmLengthQueue !== queueMovies.length) &
     queueButtonInLibrary.classList.contains('library-header__button--queue')
   ) {
     onClickBtnOueue();

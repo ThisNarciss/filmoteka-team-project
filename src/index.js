@@ -7,3 +7,4 @@ import './js/film-card-modal';
 import './js/modal-team';
 import './js/to-top-button';
 import './js/get-trailers';
+import './js/firebase';

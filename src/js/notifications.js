@@ -74,3 +74,22 @@ export function isNotInQueueNotification() {
 export function failRequest() {
   Notify.warning('Why did you deliberately break the code?', notifyOptions);
 }
+
+export function successfulRegistration() {
+  Notify.info('Thank you for registration. Please sign in!', notifyOptions);
+}
+
+export function successfulSignIn() {
+  Notify.info('Thank you for coming back!', notifyOptions);
+}
+
+export function successfulSignOut() {
+  Notify.info('You have successfully signed out!', notifyOptions);
+}
+
+export function newPassword() {
+  Notify.info(
+    'Letter with new password was sent to your email.',
+    notifyOptions
+  );
+}

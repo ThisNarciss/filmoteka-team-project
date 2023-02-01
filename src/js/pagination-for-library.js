@@ -123,17 +123,23 @@ function onPagBtnClick(evt) {
 }
 
 function renderPaginationMurkUp(page) {
+  const currentUserQueue =
+    'queue-'.concat(localStorage.getItem('user-uid')) || '';
+  const queueMovies =
+    JSON.parse(localStorage.getItem(`${currentUserQueue}`)) || [];
+  const currentUserWatched =
+    'watched-'.concat(localStorage.getItem('user-uid')) || '';
+  const watchedMovies =
+    JSON.parse(localStorage.getItem(`${currentUserWatched}`)) || [];
   if (window.screen.width > 1280) {
     if (btnQueue.classList.contains('pag-queue')) {
-      const parsedQueueMovies = JSON.parse(
-        localStorage.getItem('queue-movies')
-      );
+      const parsedQueueMovies = queueMovies;
       const chunkArrQueue = chunk(parsedQueueMovies, 9);
 
       createLibraryMarkUp(chunkArrQueue[page - 1]);
       pagination(page, chunkArrQueue.length);
     } else {
-      const parseFilmData = JSON.parse(localStorage.getItem('watched-movies'));
+      const parseFilmData = watchedMovies;
       const chunkArr = chunk(parseFilmData, 9);
 
       createLibraryMarkUp(chunkArr[page - 1]);
@@ -141,15 +147,13 @@ function renderPaginationMurkUp(page) {
     }
   } else if ((window.screen.width >= 768) & (window.screen.width < 1280)) {
     if (btnQueue.classList.contains('pag-queue')) {
-      const parsedQueueMovies = JSON.parse(
-        localStorage.getItem('queue-movies')
-      );
+      const parsedQueueMovies = queueMovies;
       const chunkArrQueue = chunk(parsedQueueMovies, 8);
 
       createLibraryMarkUp(chunkArrQueue[page - 1]);
       pagination(page, chunkArrQueue.length);
     } else {
-      const parseFilmData = JSON.parse(localStorage.getItem('watched-movies'));
+      const parseFilmData = watchedMovies;
       const chunkArr = chunk(parseFilmData, 8);
 
       createLibraryMarkUp(chunkArr[page - 1]);
@@ -157,15 +161,13 @@ function renderPaginationMurkUp(page) {
     }
   } else if (window.screen.width < 768) {
     if (btnQueue.classList.contains('pag-queue')) {
-      const parsedQueueMovies = JSON.parse(
-        localStorage.getItem('queue-movies')
-      );
+      const parsedQueueMovies = queueMovies;
       const chunkArrQueue = chunk(parsedQueueMovies, 4);
 
       createLibraryMarkUp(chunkArrQueue[page - 1]);
       pagination(page, chunkArrQueue.length);
     } else {
-      const parseFilmData = JSON.parse(localStorage.getItem('watched-movies'));
+      const parseFilmData = watchedMovies;
       const chunkArr = chunk(parseFilmData, 4);
 
       createLibraryMarkUp(chunkArr[page - 1]);

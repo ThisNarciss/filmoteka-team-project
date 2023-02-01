@@ -6,7 +6,10 @@ import {
   isWatched,
   isQueue,
 } from './add-to-library';
+import { initializeApp } from 'firebase/app';
 import { getTrailerVideos, createTrailerModalMarkup } from './get-trailers';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { isUserInModal } from './firebase';
 
 Loading.init({
   svgSize: '120px',
@@ -27,9 +30,22 @@ const watchTrailerButton = document.querySelector('.js-trailer-btn');
 const trailerModal = document.querySelector('.backdrop-trailer');
 const trailerModalCloseBtn = document.querySelector('.close-trailer-modal-btn');
 
+const firebaseConfig = {
+  apiKey: 'AIzaSyDFRxvG-cLncd4nzHUtwRVnlgrm2OeK7W8',
+  authDomain: 'filmoteka-test-90b99.firebaseapp.com',
+  projectId: 'filmoteka-test-90b99',
+  storageBucket: 'filmoteka-test-90b99.appspot.com',
+  messagingSenderId: '222913084900',
+  appId: '1:222913084900:web:1011c02877eb5816a41bf1',
+  measurementId: 'G-V4RKSJYRFE',
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
 list.addEventListener('click', onClick);
 
-async function onClick(evt) {
+export async function onClick(evt) {
   try {
     evt.preventDefault();
     body.style.overflow = 'hidden';
@@ -53,6 +69,7 @@ async function onClick(evt) {
     });
     isWatched();
     isQueue();
+    onAuthStateChanged(auth, isUserInModal);
     Loading.remove(500);
     modal.classList.remove('is-hidden');
 
@@ -73,7 +90,7 @@ async function onClick(evt) {
 }
 
 // --------------------------------------------------------ФУНКЦИЯ МАРКАПА, ЕСЛИ НУЖНЫ КЛАССЫ, ТО ДОБАВЛЯЙТЕ ИХ В ЭТУ РАЗМЕТКУ--------------------------------------------------
-function createMarkupForOne(obj) {
+export function createMarkupForOne(obj) {
   let genresArr = obj.genres.map(obj => {
     return obj.name;
   });

@@ -72,6 +72,10 @@
 .header__logo-icon {
   margin-right: 113px;
 
+  &:focus {
+    stroke: var(--second-text-color);
+  }
+
   @media screen and (min-width: 768px) {
     margin-right: 8px;
   }
@@ -89,6 +93,13 @@
     line-height: 1.16;
     display: flex;
     align-items: center;
+    color: var(--default-bgc);
+    transition: color 250ms cubic-bezier(0.39, 0.575, 0.565, 1);
+
+    &:hover,
+    &:focus {
+      color: var(--second-text-color);
+    }
   }
 }
 .navigation__list {

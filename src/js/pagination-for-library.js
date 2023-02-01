@@ -9,7 +9,7 @@ let page = 0;
 let globalCurrentPage = 0;
 let childIndex = 0;
 
-listRef.addEventListener('click', renderPaginationMurkUp);
+listRef.addEventListener('click', onPagBtnClick);
 
 export default function pagination(currentPage, allPages) {
   let murkUp = '';
@@ -97,112 +97,16 @@ function createAccentCurrentPage(page, allPages) {
   firstRef.classList.add('current');
 }
 
-export function renderPaginationMurkUp(evt) {
+function onPagBtnClick(evt) {
   if (Boolean(evt.target.closest('.btn-right'))) {
     globalCurrentPage += 1;
-    if (window.screen.width > 1280) {
-      if (btnQueue.classList.contains('pag-queue')) {
-        const parsedQueueMovies = JSON.parse(
-          localStorage.getItem('queue-movies')
-        );
-        const chunkArrQueue = chunk(parsedQueueMovies, 9);
-        createLibraryMarkUp(chunkArrQueue[globalCurrentPage - 1]);
-        pagination(globalCurrentPage, chunkArrQueue.length);
-      } else {
-        const parseFilmData = JSON.parse(
-          localStorage.getItem('watched-movies')
-        );
-        const chunkArr = chunk(parseFilmData, 9);
-        createLibraryMarkUp(chunkArr[globalCurrentPage - 1]);
-        pagination(globalCurrentPage, chunkArr.length);
-      }
-    } else if ((window.screen.width >= 768) & (window.screen.width < 1280)) {
-      if (btnQueue.classList.contains('pag-queue')) {
-        const parsedQueueMovies = JSON.parse(
-          localStorage.getItem('queue-movies')
-        );
-        const chunkArrQueue = chunk(parsedQueueMovies, 8);
-        createLibraryMarkUp(chunkArrQueue[globalCurrentPage - 1]);
-        pagination(globalCurrentPage, chunkArrQueue.length);
-      } else {
-        const parseFilmData = JSON.parse(
-          localStorage.getItem('watched-movies')
-        );
-        const chunkArr = chunk(parseFilmData, 8);
-        createLibraryMarkUp(chunkArr[globalCurrentPage - 1]);
-        pagination(globalCurrentPage, chunkArr.length);
-      }
-    } else if (window.screen.width < 768) {
-      if (btnQueue.classList.contains('pag-queue')) {
-        const parsedQueueMovies = JSON.parse(
-          localStorage.getItem('queue-movies')
-        );
-        const chunkArrQueue = chunk(parsedQueueMovies, 4);
-        createLibraryMarkUp(chunkArrQueue[globalCurrentPage - 1]);
-        pagination(globalCurrentPage, chunkArrQueue.length);
-      } else {
-        const parseFilmData = JSON.parse(
-          localStorage.getItem('watched-movies')
-        );
-        const chunkArr = chunk(parseFilmData, 4);
-        createLibraryMarkUp(chunkArr[globalCurrentPage - 1]);
-        pagination(globalCurrentPage, chunkArr.length);
-      }
-    }
+    renderPaginationMurkUp(globalCurrentPage);
 
     return;
   }
   if (Boolean(evt.target.closest('.btn-left'))) {
     globalCurrentPage -= 1;
-    if (window.screen.width > 1280) {
-      if (btnQueue.classList.contains('pag-queue')) {
-        const parsedQueueMovies = JSON.parse(
-          localStorage.getItem('queue-movies')
-        );
-        const chunkArrQueue = chunk(parsedQueueMovies, 9);
-        createLibraryMarkUp(chunkArrQueue[globalCurrentPage - 1]);
-        pagination(globalCurrentPage, chunkArrQueue.length);
-      } else {
-        const parseFilmData = JSON.parse(
-          localStorage.getItem('watched-movies')
-        );
-        const chunkArr = chunk(parseFilmData, 9);
-        createLibraryMarkUp(chunkArr[globalCurrentPage - 1]);
-        pagination(globalCurrentPage, chunkArr.length);
-      }
-    } else if ((window.screen.width >= 768) & (window.screen.width < 1280)) {
-      if (btnQueue.classList.contains('pag-queue')) {
-        const parsedQueueMovies = JSON.parse(
-          localStorage.getItem('queue-movies')
-        );
-        const chunkArrQueue = chunk(parsedQueueMovies, 8);
-        createLibraryMarkUp(chunkArrQueue[globalCurrentPage - 1]);
-        pagination(globalCurrentPage, chunkArrQueue.length);
-      } else {
-        const parseFilmData = JSON.parse(
-          localStorage.getItem('watched-movies')
-        );
-        const chunkArr = chunk(parseFilmData, 8);
-        createLibraryMarkUp(chunkArr[globalCurrentPage - 1]);
-        pagination(globalCurrentPage, chunkArr.length);
-      }
-    } else if (window.screen.width < 768) {
-      if (btnQueue.classList.contains('pag-queue')) {
-        const parsedQueueMovies = JSON.parse(
-          localStorage.getItem('queue-movies')
-        );
-        const chunkArrQueue = chunk(parsedQueueMovies, 4);
-        createLibraryMarkUp(chunkArrQueue[globalCurrentPage - 1]);
-        pagination(globalCurrentPage, chunkArrQueue.length);
-      } else {
-        const parseFilmData = JSON.parse(
-          localStorage.getItem('watched-movies')
-        );
-        const chunkArr = chunk(parseFilmData, 4);
-        createLibraryMarkUp(chunkArr[globalCurrentPage - 1]);
-        pagination(globalCurrentPage, chunkArr.length);
-      }
-    }
+    renderPaginationMurkUp(globalCurrentPage);
 
     return;
   }
@@ -215,7 +119,10 @@ export function renderPaginationMurkUp(evt) {
   }
 
   page = Number(evt.target.textContent);
+  renderPaginationMurkUp(page);
+}
 
+function renderPaginationMurkUp(page) {
   if (window.screen.width > 1280) {
     if (btnQueue.classList.contains('pag-queue')) {
       const parsedQueueMovies = JSON.parse(

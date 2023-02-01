@@ -6,6 +6,7 @@ import {
   isWatched,
   isQueue,
 } from './add-to-library';
+import { getTrailerVideos, createTrailerModalMarkup } from './get-trailers';
 
 Loading.init({
   svgSize: '120px',
@@ -22,6 +23,9 @@ const watchedBtn = document.querySelector('.watched-btn');
 const queueBtn = document.querySelector('.queue-btn');
 const body = document.querySelector('body');
 const modalCard = document.querySelector('.modal-film-card');
+const watchTrailerButton = document.querySelector('.js-trailer-btn');
+const trailerModal = document.querySelector('.backdrop-trailer');
+const trailerModalCloseBtn = document.querySelector('.close-trailer-modal-btn');
 
 list.addEventListener('click', onClick);
 
@@ -38,6 +42,13 @@ async function onClick(evt) {
     localStorage.setItem('movie-from-open-modal', JSON.stringify(filmObj));
 
     createMarkupForOne(filmObj);
+    getTrailerVideos(id).then(function (response) {
+      if (response.length === 0) {
+        watchTrailerButton.classList.add('is-hidden');
+      } else {
+        createTrailerModalMarkup(response);
+      }
+    });
     isWatched();
     isQueue();
     Loading.remove(500);
@@ -149,4 +160,37 @@ function onBackdropClick(evt) {
     // libraryRenderAfterMovieRemove();
     body.style.overflow = 'visible';
   }
+}
+
+watchTrailerButton.addEventListener('click', watchTrailers);
+trailerModalCloseBtn.addEventListener('click', onCloseBtnTrailerModal);
+
+function onBackdropTrailerClick(evt) {
+  const target = evt.target;
+  if (target.className === 'backdrop-trailer') {
+    trailerModal.classList.add('is-hidden');
+    document.removeEventListener('click', onBackdropClick);
+    // libraryRenderAfterMovieRemove();
+    body.style.overflow = 'visible';
+  }
+}
+function onTrailerClose(evt) {
+  if (evt.key === 'Escape') {
+    trailerModal.classList.add('is-hidden');
+    document.removeEventListener('click', onClose);
+    body.style.overflow = 'visible';
+  }
+}
+
+function watchTrailers(evt) {
+  evt.preventDefault();
+  trailerModal.classList.remove('is-hidden');
+  document.addEventListener('click', onBackdropTrailerClick);
+  document.addEventListener('keydown', onTrailerClose);
+}
+
+function onCloseBtnTrailerModal(evt) {
+  trailerModal.classList.add('is-hidden');
+  trailerModalCloseBtn.removeEventListener('click', onCloseClick);
+  body.style.overflow = 'visible';
 }

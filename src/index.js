@@ -5,3 +5,4 @@ import './js/film-card-modal';
 // import './js/button-top';
 import './js/students';
 import './js/to-top-button';
+import './js/get-trailers';

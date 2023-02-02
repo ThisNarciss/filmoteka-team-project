@@ -6,7 +6,12 @@ import {
   isWatched,
   isQueue,
 } from './add-to-library';
-import { getTrailerVideos, createTrailerModalMarkup } from './get-trailers';
+import {
+  getTrailerVideos,
+  createTrailerModalMarkup,
+  createMainTrailerLink,
+} from './get-trailers';
+import { getMoviePosters, createMoviePostersGallery } from './get-posters';
 
 Loading.init({
   svgSize: '120px',
@@ -45,11 +50,16 @@ async function onClick(evt) {
 
     watchTrailerButton.classList.remove('is-hidden');
     getTrailerVideos(id).then(function (response) {
-      if (response.length === 0) {
+      if (response.length <= 1) {
         watchTrailerButton.classList.add('is-hidden');
       } else {
+        createMainTrailerLink(response);
         createTrailerModalMarkup(response);
       }
+    });
+
+    getMoviePosters(id).then(function (response) {
+      createMoviePostersGallery(response);
     });
     isWatched();
     isQueue();
@@ -124,6 +134,7 @@ function createMarkupForOne(obj) {
       </tr>
     </tbody>
     </table>
+    <div class="single-trailer-wrapper"></div>
       <h3 class="description-title">About</h3>
     <p class="description-text">${aboutDescription}</p>`;
 }

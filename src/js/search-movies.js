@@ -31,7 +31,7 @@ export function onSearchSubmit(evt) {
     emptyQueryNotification();
     returnToMain();
   } else {
-    goSearch(searchQuery, (page = 1)).then(function (response) {
+    goSearch(searchQuery, 1).then(function (response) {
       if (!response) {
         noMatchesNotification();
         returnToMain();

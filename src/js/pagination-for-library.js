@@ -77,7 +77,7 @@ export default function pagination(currentPage, allPages) {
     .firstElementChild.getBoundingClientRect();
 
   window.scrollBy({
-    top: -(cardHeight * 10),
+    top: -(cardHeight * 13),
     behavior: 'smooth',
   });
 }

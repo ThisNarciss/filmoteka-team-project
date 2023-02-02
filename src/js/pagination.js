@@ -1,8 +1,6 @@
 import { movieTrending } from './fetch-movies';
 import createMurkUp from './create-mark-up';
 import searchMovies from './search-movies';
-// import createLibraryMarkUp from './library-movies';
-// import countsAllPages from './counts-all-Pages';
 
 const listRef = document.querySelector('.js-pagination-box');
 

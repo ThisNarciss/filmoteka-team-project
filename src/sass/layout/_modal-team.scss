@@ -52,12 +52,6 @@
   }
 
   &__body {
-    // width: 100%;
-    // max-width: 1200px;
-    // padding: 50px;
-    // background-color: rgb(228, 104, 104);
-    // border-radius: 5px;
-
     transform: scale(0);
     transition: all 0.3s ease 0s;
   }
@@ -93,12 +87,6 @@
       top: calc(50% - 0.0625rem);
       transform: rotate(-45deg);
     }
-  }
-
-  &__text {
-    // font-size: 26px;
-    // font-weight: 600;
-    // text-align: center;
   }
 
   &.show {

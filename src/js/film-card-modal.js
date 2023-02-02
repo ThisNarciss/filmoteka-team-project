@@ -165,7 +165,7 @@ function onClose(evt) {
 function onCloseClick() {
   modal.classList.add('is-hidden');
   closeBtn.removeEventListener('click', onCloseClick);
-  // libraryRenderAfterMovieRemove();
+
   body.style.overflow = 'visible';
 }
 
@@ -174,7 +174,7 @@ function onBackdropClick(evt) {
   if (target.className === 'backdrop') {
     modal.classList.add('is-hidden');
     document.removeEventListener('click', onBackdropClick);
-    // libraryRenderAfterMovieRemove();
+
     body.style.overflow = 'visible';
   }
 }
@@ -187,7 +187,7 @@ function onBackdropTrailerClick(evt) {
   if (target.className === 'backdrop-trailer') {
     trailerModal.classList.add('is-hidden');
     document.removeEventListener('click', onBackdropClick);
-    // libraryRenderAfterMovieRemove();
+
     body.style.overflow = 'visible';
   }
 }

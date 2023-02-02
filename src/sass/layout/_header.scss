@@ -18,30 +18,55 @@
   @media screen and (min-device-pixel-ratio: 2) and (max-width: 767px),
     screen and (min-resolution: 192dpi) and (max-width: 767px),
     screen and (min-resolution: 2dppx) and (max-width: 767px) {
-    background-image: url(../images/abstract-background-with-red-lines-mobile-1@2x.jpg);
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url(../images/abstract-background-with-red-lines-mobile-1@2x.jpg);
   }
 
   @media screen and (min-width: 768px) {
     max-width: 768px;
     max-height: 216px;
-    background-image: url(../images/abstract-background-with-red-lines-tablet-1@1x.jpg);
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url(../images/abstract-background-with-red-lines-tablet-1@1x.jpg);
   }
 
   @media screen and (min-device-pixel-ratio: 2) and (min-width: 768px),
     screen and (min-resolution: 192dpi) and (min-width: 768px),
     screen and (min-resolution: 2dppx) and (min-width: 768px) {
-    background-image: url(../images/abstract-background-with-red-lines-tablet-1@2x.jpg);
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url(../images/abstract-background-with-red-lines-tablet-1@2x.jpg);
   }
 
   @media screen and (min-width: 1280px) {
     max-width: 1280px;
-    background-image: url(../images/abstract-background-with-red-lines-desktop-1@1x.jpg);
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url(../images/abstract-background-with-red-lines-desktop-1@1x.jpg);
   }
 
   @media screen and (min-device-pixel-ratio: 2) and (min-width: 1200px),
     screen and (min-resolution: 192dpi) and (min-width: 1200px),
     screen and (min-resolution: 2dppx) and (min-width: 1200px) {
-    background-image: url(../images/abstract-background-with-red-lines-desktop-1@2x.jpg);
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url(../images/abstract-background-with-red-lines-desktop-1@2x.jpg);
   }
 }
 .header__wrapper {

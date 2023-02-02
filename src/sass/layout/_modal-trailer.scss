@@ -19,13 +19,16 @@
 }
 
 .gallery {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 15px;
+  display: none;
+  @media screen and(min-width:767px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
 
-  padding: 20px 10px;
+    padding: 20px 10px;
+  }
 }
 
 .close-trailer-modal-btn {
@@ -57,7 +60,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(1);
-    width: 50%;
+    width: 320px;
     padding: 28px;
 
     background: #e9e9e9;

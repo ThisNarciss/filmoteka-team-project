@@ -32,6 +32,7 @@ const watchTrailerButton = document.querySelector('.js-trailer-btn');
 const trailerModal = document.querySelector('.backdrop-trailer');
 const trailerModalCloseBtn = document.querySelector('.close-trailer-modal-btn');
 const trailerCarousel = document.querySelector('.modal-video_wrapper');
+const posterGallery = document.querySelector('.gallery');
 
 list.addEventListener('click', onClick);
 
@@ -64,7 +65,11 @@ async function onClick(evt) {
     });
 
     getMoviePosters(id).then(function (response) {
-      createMoviePostersGallery(response);
+      if (response.length === 0) {
+        posterGallery.classList.add('is-hidden');
+      } else {
+        createMoviePostersGallery(response);
+      }
     });
     isWatched();
     isQueue();

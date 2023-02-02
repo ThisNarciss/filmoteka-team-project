@@ -32,7 +32,6 @@ const watchTrailerButton = document.querySelector('.js-trailer-btn');
 const trailerModal = document.querySelector('.backdrop-trailer');
 const trailerModalCloseBtn = document.querySelector('.close-trailer-modal-btn');
 const trailerCarousel = document.querySelector('.modal-video_wrapper');
-const closeTrailerBtn = document.querySelector('.close-trailer-modal-btn');
 
 list.addEventListener('click', onClick);
 
@@ -215,7 +214,6 @@ function onCloseBtnTrailerModal(evt) {
   trailerCarousel.innerHTML = '';
   const modalPoster = document.querySelector('.modal-img');
   const id = modalPoster.getAttribute('id');
-  console.log(id);
   getTrailerVideos(id).then(function (response) {
     if (response.length <= 1) {
       watchTrailerButton.classList.add('is-hidden');

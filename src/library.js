@@ -7,3 +7,6 @@ import './js/film-card-modal-library';
 
 import './js/get-trailers';
 import './js/trailer-modal-markup';
+
+import './js/to-top-button';
+import './js/modal-team';

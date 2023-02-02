@@ -168,17 +168,29 @@ table {
 }
 
 .modal-select-btn {
-  width: 265px;
   display: flex;
-  gap: 5px;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+
+  // width: 265px;
+
+  gap: 15px;
 
   @media screen and (min-width: 768px) {
+    width: 265px;
     gap: 15px;
   }
   @media screen and (min-width: 1280px) {
-    margin-left: 8px;
+    display: flex;
+    flex-wrap: nowrap;
+    margin-left: auto;
+    margin-right: auto;
+
+    width: 390px;
+
+    // margin-left: 8px;
   }
 }
 

@@ -128,7 +128,7 @@
 }
 table {
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .characteristic {
@@ -168,8 +168,9 @@ table {
 }
 
 .modal-select-btn {
+  width: 265px;
   display: flex;
-  gap: 20px;
+  gap: 5px;
   flex-wrap: wrap;
   justify-content: space-around;
 
@@ -216,6 +217,27 @@ table {
   &:hover,
   &:focus {
     border: none;
+    background-color: var(--accent-color);
+    color: var(--white-text-color);
+  }
+}
+
+.single-trailer-wrapper {
+  margin-bottom: 10px;
+}
+.single-trailer-video-link {
+  color: black;
+  fill: currentColor;
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  font-weight: 500;
+
+  &:hover,
+  &:focus {
+    border: 1px solid var(--accent-color);
     background-color: var(--accent-color);
     color: var(--white-text-color);
   }

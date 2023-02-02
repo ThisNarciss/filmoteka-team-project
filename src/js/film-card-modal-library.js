@@ -7,7 +7,12 @@ import {
   isWatched,
   isQueue,
 } from './add-to-library';
-
+import {
+  getTrailerVideos,
+  createTrailerModalMarkup,
+  createMainTrailerLink,
+} from './get-trailers';
+import { getMoviePosters, createMoviePostersGallery } from './get-posters';
 import { onClickBtnWatched, onClickBtnOueue } from './library-movies';
 import { renderLibrary, renderLibraryQueue } from './library-movies';
 
@@ -28,6 +33,9 @@ const body = document.querySelector('body');
 const modalCard = document.querySelector('.modal-film-card');
 const watchedButtonInLibrary = document.querySelector('.js-btn-watched');
 const queueButtonInLibrary = document.querySelector('.js-btn-queue');
+const watchTrailerButton = document.querySelector('.js-trailer-btn');
+const trailerModal = document.querySelector('.backdrop-trailer');
+const trailerModalCloseBtn = document.querySelector('.close-trailer-modal-btn');
 
 list.addEventListener('click', onClick);
 
@@ -53,6 +61,21 @@ async function onClick(evt) {
     localStorage.setItem('movie-from-open-modal', JSON.stringify(filmObj));
 
     createMarkupForOne(filmObj);
+
+    watchTrailerButton.classList.remove('is-hidden');
+    getTrailerVideos(id).then(function (response) {
+      if (response.length <= 1) {
+        watchTrailerButton.classList.add('is-hidden');
+      } else {
+        createMainTrailerLink(response);
+        createTrailerModalMarkup(response);
+      }
+    });
+
+    getMoviePosters(id).then(function (response) {
+      createMoviePostersGallery(response);
+    });
+
     isWatched();
     isQueue();
     Loading.remove(500);
@@ -115,6 +138,7 @@ function createMarkupForOne(obj) {
       </tr>
     </tbody>
     </table>
+    <div class="single-trailer-wrapper"></div>
       <h3 class="description-title">About</h3>
     <p class="description-text">${obj.overview}</p>`;
 }
@@ -175,4 +199,37 @@ function libraryRenderAfterMovieRemove() {
     // document.location.reload();
   }
   // }
+}
+
+watchTrailerButton.addEventListener('click', watchTrailers);
+trailerModalCloseBtn.addEventListener('click', onCloseBtnTrailerModal);
+
+function onBackdropTrailerClick(evt) {
+  const target = evt.target;
+  if (target.className === 'backdrop-trailer') {
+    trailerModal.classList.add('is-hidden');
+    document.removeEventListener('click', onBackdropClick);
+    // libraryRenderAfterMovieRemove();
+    body.style.overflow = 'visible';
+  }
+}
+function onTrailerClose(evt) {
+  if (evt.key === 'Escape') {
+    trailerModal.classList.add('is-hidden');
+    document.removeEventListener('click', onClose);
+    body.style.overflow = 'visible';
+  }
+}
+
+function watchTrailers(evt) {
+  evt.preventDefault();
+  trailerModal.classList.remove('is-hidden');
+  document.addEventListener('click', onBackdropTrailerClick);
+  document.addEventListener('keydown', onTrailerClose);
+}
+
+function onCloseBtnTrailerModal(evt) {
+  trailerModal.classList.add('is-hidden');
+  trailerModalCloseBtn.removeEventListener('click', onCloseClick);
+  body.style.overflow = 'visible';
 }

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
-// import { handleAddToWatched } from './add-to-library';
+
 import {
   handleAddToWatched,
   handleAddToQueue,
@@ -14,7 +14,6 @@ import {
 } from './get-trailers';
 import { getMoviePosters, createMoviePostersGallery } from './get-posters';
 import { onClickBtnWatched, onClickBtnOueue } from './library-movies';
-import { renderLibrary, renderLibraryQueue } from './library-movies';
 
 Loading.init({
   svgSize: '120px',
@@ -52,7 +51,7 @@ async function onClick(evt) {
     evt.preventDefault();
     body.style.overflow = 'hidden';
     document.addEventListener('click', onBackdropClick);
-    // document.addEventListener('click', renderPaginationMurkUp);
+
     const target = evt.target.closest('li');
     const id = target.getAttribute('id');
     const obj = await getMovieById(id);
@@ -86,9 +85,8 @@ async function onClick(evt) {
     modal.classList.remove('is-hidden');
 
     document.addEventListener('keydown', onClose);
-    // document.addEventListener('keydown', renderPaginationMurkUp);
+
     closeBtn.addEventListener('click', onCloseClick);
-    // closeBtn.addEventListener('click', renderPaginationMurkUp);
 
     if (!modal.classList.contains('is-hidden')) {
       watchedBtn.addEventListener('click', handleAddToWatched);
@@ -185,8 +183,6 @@ function onBackdropClick(evt) {
 }
 
 function libraryRenderAfterMovieRemove() {
-  // if (modalCard.classList.contains('modal-in-library')) {
-
   if (
     (localDataFilmLengthWatched !==
       JSON.parse(localStorage.getItem('watched-movies')).length) &
@@ -202,7 +198,6 @@ function libraryRenderAfterMovieRemove() {
     onClickBtnOueue();
     // document.location.reload();
   }
-  // }
 }
 
 watchTrailerButton.addEventListener('click', watchTrailers);
@@ -213,7 +208,7 @@ function onBackdropTrailerClick(evt) {
   if (target.className === 'backdrop-trailer') {
     trailerModal.classList.add('is-hidden');
     document.removeEventListener('click', onBackdropClick);
-    // libraryRenderAfterMovieRemove();
+
     body.style.overflow = 'visible';
   }
 }

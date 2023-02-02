@@ -52,6 +52,10 @@ async function onClick(evt) {
     getTrailerVideos(id).then(function (response) {
       if (response.length <= 1) {
         watchTrailerButton.classList.add('is-hidden');
+        const singleTrailerContainer = document.querySelector(
+          '.single-trailer-wrapper'
+        );
+        singleTrailerContainer.classList.add('is-hidden');
       } else {
         createMainTrailerLink(response);
         createTrailerModalMarkup(response);

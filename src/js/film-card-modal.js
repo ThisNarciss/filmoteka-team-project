@@ -31,6 +31,8 @@ const modalCard = document.querySelector('.modal-film-card');
 const watchTrailerButton = document.querySelector('.js-trailer-btn');
 const trailerModal = document.querySelector('.backdrop-trailer');
 const trailerModalCloseBtn = document.querySelector('.close-trailer-modal-btn');
+const trailerCarousel = document.querySelector('.modal-video_wrapper');
+const closeTrailerBtn = document.querySelector('.close-trailer-modal-btn');
 
 list.addEventListener('click', onClick);
 
@@ -111,7 +113,7 @@ function createMarkupForOne(obj) {
     ifPhotoTrue = `https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/No_image_available_500_x_500.svg/500px-No_image_available_500_x_500.svg.png`;
   }
 
-  imgBox.innerHTML = `<img src="${ifPhotoTrue}" alt="${obj.title}" class="modal-img"/>`;
+  imgBox.innerHTML = `<img id="${obj.id}" src="${ifPhotoTrue}" alt="${obj.title}" class="modal-img"/>`;
   modalAbout.innerHTML = `<h2 class="modal-title">${obj.title}</h2>
         <table><tbody>
       <tr>
@@ -210,4 +212,19 @@ function onCloseBtnTrailerModal(evt) {
   trailerModal.classList.add('is-hidden');
   trailerModalCloseBtn.removeEventListener('click', onCloseClick);
   body.style.overflow = 'visible';
+  trailerCarousel.innerHTML = '';
+  const modalPoster = document.querySelector('.modal-img');
+  const id = modalPoster.getAttribute('id');
+  console.log(id);
+  getTrailerVideos(id).then(function (response) {
+    if (response.length <= 1) {
+      watchTrailerButton.classList.add('is-hidden');
+      const singleTrailerContainer = document.querySelector(
+        '.single-trailer-wrapper'
+      );
+      singleTrailerContainer.classList.add('is-hidden');
+    } else {
+      createTrailerModalMarkup(response);
+    }
+  });
 }

@@ -32,7 +32,7 @@ export function isWatched() {
   const watchedMovies =
     JSON.parse(localStorage.getItem('watched-movies')) || [];
   const isWatched = watchedMovies.some(movie => movie.id === movieData.id);
-  console.log(movieData, watchedMovies, isWatched);
+  // console.log(movieData, watchedMovies, isWatched);
 
   if (isWatched) {
     addToWatchedBtn.textContent = 'Remove from watched';

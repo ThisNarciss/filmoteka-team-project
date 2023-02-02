@@ -64,7 +64,6 @@ movieTrending()
       );
     }
     createMarkUp(data);
-    console.log(data);
     pagination(1, data.total_pages);
   })
   .catch(console.error());

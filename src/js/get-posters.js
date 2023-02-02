@@ -10,10 +10,7 @@ export async function getMoviePosters(movieId) {
       `https://api.themoviedb.org/3/movie/${movieId}/images?api_key=d60997a7e23cda835c1c23368c69f903`
     );
 
-    console.log(response);
-
     const arr = response.data.posters;
-    console.log(arr);
     return arr;
   } catch (error) {
     console.error(error);

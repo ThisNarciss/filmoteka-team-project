@@ -1,12 +1,14 @@
-import showConfetti from './confetti';
+import { showConfetti } from './confetti';
+import { shoot } from './confetti';
 
-// const popupTrigger = document.querySelector('.popup-trigger');
 const popupTrigger = document.querySelector('.footer-authors');
 const popup = document.querySelector('.popup');
 const popupClose = document.querySelector('.popup__close');
 
 popupTrigger.addEventListener('click', e => {
-  showConfetti();
+  setTimeout(showConfetti, 400);
+  setTimeout(shoot, 1500);
+  setTimeout(shoot, 2500);
   popup.classList.add('show');
   document.body.style.cssText = `overflow: hidden;`;
 });

@@ -55,6 +55,7 @@ async function onClick(evt) {
     document.addEventListener('click', onBackdropClick);
 
     const target = evt.target.closest('li');
+    console.log(target);
     const id = target.getAttribute('id');
     const obj = await getMovieById(id);
     Loading.circle();

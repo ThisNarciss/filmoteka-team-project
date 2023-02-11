@@ -74,3 +74,65 @@ export function isNotInQueueNotification() {
 export function failRequest() {
   Notify.warning('Why did you deliberately break the code?', notifyOptions);
 }
+
+export function successfulRegistration() {
+  Notify.info('Thank you for registration. Please sign in!', notifyOptions);
+}
+
+export function successfulSignIn() {
+  Notify.info('Thank you for coming back!', notifyOptions);
+}
+
+export function successfulSignOut() {
+  Notify.info('You have successfully signed out!', notifyOptions);
+}
+
+export function newPassword() {
+  Notify.info(
+    'Letter with new password was sent to your email.',
+    notifyOptions
+  );
+}
+
+export function userExistNotification() {
+  Report.failure(
+    'This user is already exist. Please sign in!',
+    '',
+    'OK',
+    reportOptions
+  );
+}
+
+export function incorrectPasswordNotification() {
+  Report.failure(
+    'Authorization error. Incorrect password',
+    '',
+    'OK',
+    reportOptions
+  );
+}
+
+export function invalidEmailNotification() {
+  Report.failure('Please enter valid email!', '', 'OK', reportOptions);
+}
+
+export function missingEmailNotification() {
+  Report.failure('Please enter email!', '', 'OK', reportOptions);
+}
+
+export function missingPasswordNotification() {
+  Report.failure('Please enter password!', '', 'OK', reportOptions);
+}
+
+export function weekPasswordNotification() {
+  Report.failure(
+    'Password should be at least 6 characters.',
+    '',
+    'OK',
+    reportOptions
+  );
+}
+
+export function userNotFoundNotification() {
+  Report.failure('User not found! Please register!', '', 'OK', reportOptions);
+}

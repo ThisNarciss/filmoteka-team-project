@@ -1,0 +1,80 @@
+.auth-form {
+  position: relative;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: row;
+}
+.input-field {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 100%;
+}
+#email,
+#password {
+  font-size: 10px;
+  line-height: 1.2px;
+  letter-spacing: 0.01em;
+  width: 100%;
+  padding: 7px;
+  color: var(--base-text-color);
+  border: 1px solid;
+  border-radius: 4px;
+  transition: border-color 250 ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  &:focus {
+    outline: none;
+    border-color: var(--second-text-color);
+  }
+  @media screen and (min-width: 768px) {
+    width: 200px;
+    font-size: 12px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 300px;
+    font-size: 16px;
+  }
+}
+.buttons-auth {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+
+  @media screen and (min-width: 768px) {
+    align-items: flex-start;
+    flex-direction: row;
+  }
+  @media screen and (min-width: 1280px) {
+    gap: 30px;
+  }
+}
+
+.forgot-password,
+.form-button-register,
+.form-button-sign-in {
+  font-size: 10px;
+  line-height: 0.9px;
+  letter-spacing: 0.01em;
+  padding: 5px;
+  color: var(--default-bgc);
+  border: none;
+  background-color: transparent;
+  transition: color 250 ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  &:focus,
+  &:hover {
+    color: var(--second-text-color);
+  }
+
+  @media screen and (min-width: 768px) {
+    font-size: 12px;
+    line-height: 1.2px;
+    letter-spacing: 0.01em;
+  }
+  @media screen and (min-width: 1280px) {
+    font-size: 16px;
+  }
+}

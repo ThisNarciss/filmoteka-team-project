@@ -1,5 +1,8 @@
 import axios from 'axios';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
+import { initializeApp } from 'firebase/app';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { isUserInModal } from './firebase';
 import {
   handleAddToWatched,
   handleAddToQueue,
@@ -33,6 +36,19 @@ const trailerModal = document.querySelector('.backdrop-trailer');
 const trailerModalCloseBtn = document.querySelector('.close-trailer-modal-btn');
 const trailerCarousel = document.querySelector('.modal-video_wrapper');
 const posterGallery = document.querySelector('.gallery');
+
+const firebaseConfig = {
+  apiKey: 'AIzaSyDFRxvG-cLncd4nzHUtwRVnlgrm2OeK7W8',
+  authDomain: 'filmoteka-test-90b99.firebaseapp.com',
+  projectId: 'filmoteka-test-90b99',
+  storageBucket: 'filmoteka-test-90b99.appspot.com',
+  messagingSenderId: '222913084900',
+  appId: '1:222913084900:web:1011c02877eb5816a41bf1',
+  measurementId: 'G-V4RKSJYRFE',
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
 list.addEventListener('click', onClick);
 
@@ -73,6 +89,7 @@ async function onClick(evt) {
     });
     isWatched();
     isQueue();
+    onAuthStateChanged(auth, isUserInModal);
     Loading.remove(500);
     modal.classList.remove('is-hidden');
 
